@@ -25,7 +25,7 @@ export default function InfoProduct({ navigation, route }) {
 
   const Save = () => {
     onSave();
-    goback();
+    // goback();
   };
   const onSave = () => {
     const newProduct = info.item;
@@ -38,12 +38,11 @@ export default function InfoProduct({ navigation, route }) {
         Accept: "application/json",
       },
     }); 
-    // const goback = () => {
-    //   console.log ("hàm 2 được gọi")
-    //   navigation.navigate('Home')
-    //   onPress={() => navigation.navigate('Cart')}
+    const goback = () => {
+      console.log ("hàm 2 được gọi")
+      navigation.navigate('Home')
   
-    // }
+    }
   };
 
   function gotobuy() {
@@ -97,7 +96,7 @@ export default function InfoProduct({ navigation, route }) {
           />
         </TouchableOpacity>
       </View><ScrollView>
-      <View style={{ padding: 20 }}>
+      <View style={{ padding: 20, flex: 1}}>
         <Image
           source={{ uri: info.item.imageBook }}
           style={{ width: "100%", height: "50%", marginBottom: 8 }}
@@ -111,21 +110,19 @@ export default function InfoProduct({ navigation, route }) {
         </Text>
         </Text> 
         <Text> Thể loại : <Text style={{ fontSize: 15, fontWeight: "700" }}>
-          {info.item.author}
+          {info.item.topic}
         </Text>
         </Text> 
         <Text style={{ color: "#EE0033", fontSize: 20, fontWeight: "700" }}>
           {new Intl.NumberFormat("vi-VN", config).format(info.item.price)}
         </Text>
-        
-
-        <Text style={{ marginTop: 30, marginBottom: 10, color: "#191970", fontSize: 20}}>
+        <Text style={{ marginTop: 5, marginBottom: 10, color: "#191970", fontSize: 20,}}>
           Giới thiệu nội dung
         </Text>
-        <ScrollView >
+        <ScrollView>
         <Text>{info.item.describe}</Text></ScrollView>
       </View></ScrollView>
-      <View style={{ flex: 0.5 , flexDirection: 'row', alignItems: 'center'}}>
+      <View style={{ flex: 0.5 , flexDirection: 'row', alignItems: 'center', borderWidth:1}}>
         <TouchableOpacity
           style={{
             width: 190,
@@ -133,24 +130,27 @@ export default function InfoProduct({ navigation, route }) {
             backgroundColor: "#A5A5A5",
             alignItems: "center",
             justifyContent: "center",
-            flex: 1,
+            borderRadius: 40,
+            marginLeft: 20
           }}
           onPress={() => Save()}
         >
           <Text
-            style={{ color: "#fff", fontSize: 20, fontWeight: "400" }}
+            style={{ color: "#fff", fontSize: 20, fontWeight: "400",  }}
           >
             Thêm vào giỏ hàng
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-            flex: 1,
-            width: 190,
+           width: 190,
             height: 49,
             backgroundColor: "#191970",
             alignItems: "center",
             justifyContent: "center",
+            borderRadius: 40,
+            marginLeft: 10
+            
             
           }}
           onPress={() => gotobuy()}

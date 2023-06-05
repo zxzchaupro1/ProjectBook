@@ -12,65 +12,122 @@ import {
   Alert,
 } from "react-native";
 import cartStore from "./cartStore";
-export default function Cart({ navigation, route }) {
-  const info = route
+export default function Cart({ navigation, route}) {
   const [listProduct, setListProduct] = useState();
   const [number, setNumber] = useState();
   const [total, setTotal] = useState();
-  const [check, setCheck] = useState(false)
-
-  const count = cartStore(state => state.count);
-  const addCount = cartStore(state => state.addCount);
-  const subtractCount = cartStore(state => state.subtractCount);
   const listCartP = cartStore(state => state.listProducCart)
-  const listttt = cartStore(state => state.list);
+
+
+
+  useEffect(() => {
+    getListProduct();
+  }, [total]);
+
+
   const getListProduct = async () => {
     await fetch("https://645b097765bd868e93293770.mockapi.io/ListBook")
       .then((Response) => Response.json())
       .then((json) => {
         setListProduct(json);
-        // console.log("list", listProduct);
         listCartP(json)
-        console.log(listttt);
         setNumber(json.length)
-        let total = 0
-        for (const e of listProduct) {
-          total += Number(e.price)
-        }
-        setTotal(total)
+        let total1 = 0
+        json.forEach((element) => {
+          var tongSoTien = element.price;
+          total1 = total1 + tongSoTien;
+        });
+          console.log("Tiền",total1)
+        setTotal(total1)
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  const buyProduct = info.item;
-  const onBuy = () => {
-    const buyProduct = info.item;
-    console.log(buyProduct);
-    fetch("https://645b097765bd868e93293770.mockapi.io/buyed", {
+
+
+const postData = async (item) => {
+  const response = await fetch("https://645b097765bd868e93293770.mockapi.io/buyed", {
       method: "POST",
-      body: JSON.stringify(buyProduct),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+      headers: { "Content-Type": "application/json",},
+      Accept: "application/json",
+      body: JSON.stringify(item),
     });
   };
-  useEffect(() => {
-    getListProduct();
-  }, []);
-  const onDeleteAPI = async (deleteID) => {
+  
+  const MyComponent = () => {
+    const myArray = [listProduct];
+    console.log ("đây là ",myArray)
+    const handlePostData = async () => {
+      for (const item of myArray) {
+        await postData(item);
+      }
+    };
+  };
+  
+
+
+  const onDelete = (deleteId) => {
+    const newList = new Array()
+    listProduct.forEach(element => {
+      if(element.id != deleteId){
+        newList.push(element)
+      }
+    });
+    setListProduct(newList)
+    setNumber(newList.length)
+    let total = 0
+    for (const e of listProduct){
+      total+= Number(e.price)
+    }
+    console.log(amountOfMoney);
+    setTotal(total);
+  };
+
+
+  const onDeleteAPI = async(deleteID) => {
     fetch("https://645b097765bd868e93293770.mockapi.io/ListBook/" + deleteID, {
       method: 'DELETE',
     })
-      .then(res => {
-        if (res.status == 200) {
-          // Alert.alert('Thông báo',"Xóa thành công")
-          getListProduct()
-        } else {
-          Alert.alert('Thông báo', "Xóa không thành cong")
-        }
-      })
+    .then(res => {
+      if(res.status == 200) {
+        // Alert.alert('Thông báo',"Xóa thành công")
+        getListProduct()
+      } else {
+        Alert.alert('Thông báo',"Xóa không thành cong")
+      }
+    })
+  }
+  const buy = () => {
+    Alert.alert ('Thông báo',"Đã mua thành công")
+    return 
+  }
+
+  const updateItem = (item, bool) => {
+
+    // console.log(check);
+    if (!bool) {
+      item.quantityBuy = item.quantityBuy + 1
+    item.quantity = item.quantity - 1
+    } else {
+      item.quantityBuy = item.quantityBuy - 1
+    item.quantity = item.quantity + 1
+    }
+    
+    const requestOptions = {
+      method: "PUT",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(item)
+    };
+    fetch("https://645b097765bd868e93293770.mockapi.io/ListBook/" + item.id, requestOptions)
+    .then(res => {
+      if(res.status == 200) {
+        console.log("Update thanh cong id: " , item.id);
+        getListProduct()
+      } else {
+        console.log("That bai");
+      }
+    })
   }
   const config = {
     style: "currency",
@@ -81,7 +138,7 @@ export default function Cart({ navigation, route }) {
   return (
     <View style={styles.container}>
       <View
-        style={{
+         style={{
           backgroundColor: "#191970",
           flexDirection: "row",
           alignItems: "center",
@@ -135,26 +192,26 @@ export default function Cart({ navigation, route }) {
         <FlatList
           data={listProduct}
           renderItem={({ item }) => (
-            <View style={{ flexDirection: 'row', padding: 20, backgroundColor: '#fff', margin: 15, borderRadius: 20 }}>
+            <View style={{flexDirection:'row', padding: 20, backgroundColor: '#fff', margin: 15, borderRadius: 20}}>
               <Image
-                style={{ width: 150, height: 150, marginLeft: -40 }}
+                style={{ width: 150, height: 150,marginLeft: -40 }}
                 source={{ uri: item.imageBook }}
                 resizeMode="contain"
 
               />
               <View>
-                <Text style={{ fontSize: 15, fontWeight: '700' }}>{item.name}</Text>
-                <Text style={{ marginTop: 10 }}> Giá tiền:
-                  <Text style={{ color: 'red', fontSize: 15, marginBottom: 20, }}>
-                    {new Intl.NumberFormat("vi-VN", config).format(item.price)}
-                  </Text>
-                </Text>
+              <Text style={{fontSize: 15, fontWeight: '700'}}>{item.name}</Text>
+              <Text style = {{ marginTop: 10}}> Giá tiền:   
+                <Text style={{color: 'red', fontSize: 15, marginBottom: 20, }}>
+                {new Intl.NumberFormat("vi-VN", config).format(item.price)}
+              </Text>
+              </Text>
               </View>
 
-              <View style={{ marginLeft: "25%" }}>
-                <TouchableOpacity onPress={() => onDeleteAPI(item.id)}>
-                  <Text style={{ fontSize: 13, fontWeight: '600', marginLeft: 20 }}>X</Text>
-                </TouchableOpacity>
+              <View style={{marginLeft: "25%"}}>
+              <TouchableOpacity onPress={() => onDeleteAPI(item.id)}>
+                <Text style={{fontSize: 13, fontWeight: '600', marginLeft: 20}}>X</Text>
+              </TouchableOpacity>
 
               </View>
             </View>
@@ -162,11 +219,11 @@ export default function Cart({ navigation, route }) {
           keyExtractor={(item) => item.id}
 
         ></FlatList>
-      </View>
+      </View> 
 
-      <View style={{ flex: 1.5, flexDirection: 'row', alignItems: 'center' }}>
-        <Text style={{ flex: 1, fontSize: 20, fontWeight: '700', marginLeft: 30 }}>Tổng cộng: {new Intl.NumberFormat("vi-VN", config).format(total)}</Text>
-        <TouchableOpacity style={{ flex: 1, backgroundColor: '#191970', alignItems: 'center', padding: 10, borderRadius: 20 }} onPress={() => onBuy()} ><Text style={{ fontSize: 20, fontWeight: '500', color: "#fff" }}>Mua ngay</Text></TouchableOpacity>
+      <View style={{ flex: 1.5 , flexDirection: 'row', alignItems: 'center'}}>
+        <Text style={{flex: 1,fontSize: 20, fontWeight: '700', marginLeft: 30}}>Tổng cộng: {new Intl.NumberFormat("vi-VN", config).format(total)}</Text>
+        <TouchableOpacity style={{flex: 1 ,backgroundColor: '#191970', alignItems:'center', padding: 10, borderRadius: 20 }}  onPress={() => handlePostData()}><Text style={{fontSize: 20, fontWeight: '500', color: "#fff"}}>Mua ngay</Text></TouchableOpacity>
       </View>
     </View>
   );
@@ -179,3 +236,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+

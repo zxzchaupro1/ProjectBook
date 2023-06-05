@@ -51,8 +51,9 @@ export default function Home({ navigation }) {
     },
 
   ];
+  //Item Chuyện cổ tích
   const renderItem = ({ item }) => {
-    if (item.topic === 1) {
+    if (item.topic === ("Cổ tích")) {
       return (
         <View
           style={{
@@ -87,8 +88,9 @@ export default function Home({ navigation }) {
     }
     return null;
   };
+  //Item Chuyện cười
   const renderItem1 = ({ item }) => {
-    if (item.topic === 2) {
+    if (item.topic === ("Truyện Cười")) {
       return (
         <View
           style={{
@@ -116,7 +118,7 @@ export default function Home({ navigation }) {
               style={{ width: "100%", height: "50%", marginBottom: 8 }}
               resizeMode="contain"
             />
-            <Text style= {{justifyContent: "center"}}>{item.name}</Text>
+            <Text style={{ justifyContent: "center" }}>{item.name}</Text>
             <Text>{item.dependencies}</Text>
           </TouchableOpacity>
         </View>
@@ -124,6 +126,84 @@ export default function Home({ navigation }) {
     }
     return null;
   };
+  //Item Chuyện ma
+  const renderItem2 = ({ item }) => {
+    if (item.topic === ("Kinh dị")) {
+      return (
+        <View
+          style={{
+            width: 130,
+            height: 160,
+            backgroundColor: "#FFF",
+            margin: 5,
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+            padding: 22,
+          }}
+        >
+          <TouchableOpacity onPress={() => goToDetail(item)}>
+            <Image
+              source={{ uri: item.imageBook }}
+              style={{ width: "100%", height: "50%", marginBottom: 8 }}
+              resizeMode="contain"
+            />
+            <Text style={{ justifyContent: "center" }}>{item.name}</Text>
+            <Text>{item.dependencies}</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    return null;
+  };
+  //Item Tiểu thuyết
+  const renderItem3 = ({ item }) => {
+    if (item.topic === ("Tiểu thuyết")) {
+      return (
+        <View
+          style={{
+            width: 130,
+            height: 160,
+            backgroundColor: "#FFF",
+            margin: 5,
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
+            padding: 22,
+          }}
+        >
+          <TouchableOpacity onPress={() => goToDetail(item)}>
+            <Image
+              source={{ uri: item.imageBook }}
+              style={{ width: "100%", height: "50%", marginBottom: 8 }}
+              resizeMode="contain"
+            />
+            <Text style={{ justifyContent: "center" }}>{item.name}</Text>
+            <Text>{item.dependencies}</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    return null;
+  };
+
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -249,7 +329,7 @@ export default function Home({ navigation }) {
               //FlatList 2
               style={{
                 backgroundColor: "white",
-                width: "90%",
+                width: "100%",
                 justifyContent: "center",
                 alignSelf: "center",
 
@@ -264,12 +344,14 @@ export default function Home({ navigation }) {
                 elevation: 5,
                 padding: 22,
                 alignItems: "center",
+
                 marginTop: 30,
                 marginBottom: 20
               }}
             >
-              <Text>Chuyện cổ tích</Text>
-              <FlatList
+              <View style = {{ flex: 8}}>
+              <Text style = {{fontSize: 20 , fontWeight: '700', marginLeft: -50}}>Truyện cổ tích</Text>
+              <FlatList style = {{margin:5}}
                 // Cột hàng 
                 horizontal={true}
                 // numColumns={3}
@@ -278,7 +360,7 @@ export default function Home({ navigation }) {
                 keyExtractor={(item) => item.id.toString()}
               />
 
-              <Text>Chuyện cổ tích</Text>
+              <Text style = {{fontSize: 20 , fontWeight: '700', marginLeft: -50}}>Truyện cười</Text>
               <FlatList
                 // Cột hàng 
                 horizontal={true}
@@ -287,6 +369,24 @@ export default function Home({ navigation }) {
                 renderItem={renderItem1}
                 keyExtractor={(item) => item.id.toString()}
               />
+              <Text style = {{fontSize: 20 , fontWeight: '700', marginLeft: -50}}>Truyện ma</Text>
+              <FlatList
+                // Cột hàng 
+                horizontal={true}
+                // numColumns={3}
+                data={listCustomer}
+                renderItem={renderItem2}
+                keyExtractor={(item) => item.id.toString()}
+              />
+              <Text style = {{fontSize: 20 , fontWeight: '700', marginLeft: -50}}>Tiểu thuyết</Text>
+              <FlatList
+                // Cột hàng 
+                horizontal={true}
+                // numColumns={3}
+                data={listCustomer}
+                renderItem={renderItem3}
+                keyExtractor={(item) => item.id.toString()}
+              /></View>
             </View>
           </View>
 

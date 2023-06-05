@@ -15,7 +15,7 @@ import cartStore from "./cartStore";
 
 
 
-export default function Library({ navigation, route}) {
+export default function Library({ navigation, route }) {
   const info = route
   const [listProduct, setListProduct] = useState();
   const [number, setNumber] = useState();
@@ -41,7 +41,7 @@ export default function Library({ navigation, route}) {
         setNumber(json.length)
         let amountOfMoney = 0
         let money = 0
-        for (let i = 0; i < json.length; i++){
+        for (let i = 0; i < json.length; i++) {
           money = json[i].price
           amountOfMoney += money
         }
@@ -57,7 +57,7 @@ export default function Library({ navigation, route}) {
   return (
     <View style={styles.container}>
       <View
-         style={{
+        style={{
           backgroundColor: "#191970",
           flexDirection: "row",
           alignItems: "center",
@@ -110,20 +110,20 @@ export default function Library({ navigation, route}) {
         <FlatList
           data={listProduct}
           renderItem={({ item }) => (
-            <View style={{flexDirection:'row', padding: 20, backgroundColor: '#fff', margin: 15, borderRadius: 10}}>
+            <View style={{ flexDirection: 'row', padding: 20, backgroundColor: '#fff', margin: 15, borderRadius: 10 }}>
               <Image
-                style={{ width: 150, height: 150,marginLeft: -40 }}
+                style={{ width: 150, height: 150, marginLeft: -40 }}
                 source={{ uri: item.imageBook }}
                 resizeMode="contain"
               />
               <View>
-              <Text style={{fontSize: 15, fontWeight: '700'}}>{item.name}</Text>
+                <Text style={{ fontSize: 15, fontWeight: '700' }}>{item.name}</Text>
               </View>
             </View>
           )}
           keyExtractor={(item) => item.id}
         ></FlatList>
-      </View> 
+      </View>
     </View>
   );
 }
