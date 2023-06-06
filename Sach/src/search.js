@@ -121,12 +121,12 @@ export default function Search({ navigation }) {
       <View style={{ flex: 1 }}>
 
         {loading ? <ActivityIndicator style={{ marginTop: 20, justifyContent: 'center' }} /> : null}
-        <FlatList 
+        <FlatList
           data={listSearch}
           renderItem={({ item }) => {
             const partialText = item.name.split(textSearch)
             return (
-              <View  style={{
+              <View style={{
                 flexDirection: "colum",
                 padding: 10,
                 marginBottom: 20,
@@ -137,16 +137,27 @@ export default function Search({ navigation }) {
                 shadowRadius: 20,
               }} >
                 <TouchableOpacity onPress={() => goToDetail(item)}>
-                <Text style={{ fontSize: 25, fontWeight: "700" }}>{partialText.map((part, index) => {
-                  return (
-                    <Text key={index}>
-                      {part}
-                      {index !== partialText.length - 1 && <Text style={{ color: 'blue', fontWeight: '900' }}>{textSearch}</Text>}
-                    </Text>
-                  )
-                })}</Text>
-
-                <Text style={{ fontSize: 25, fontWeight: "500", color: 'red' }}>{new Intl.NumberFormat('vi-VN', config).format(item.price)}</Text>
+                  <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style = {{flex:1,marginLeft: 20}}>
+                      <Text style={{ fontSize: 25, fontWeight: "700" }}>{partialText.map((part, index) => {
+                        return (
+                          <Text key={index}>
+                            {part}
+                            {index !== partialText.length - 1 && <Text style={{ color: 'blue', fontWeight: '900' }}>{textSearch}</Text>}
+                          </Text>
+                        )
+                      })}
+                      </Text>
+                      <Text style={{ fontSize: 25, fontWeight: "500", color: 'red' }}>{new Intl.NumberFormat('vi-VN', config).format(item.price)}</Text>
+                    </View>
+                    <View style = {{flex:1,marginLeft:150}}>
+                    <Image
+          source={{ uri: item.imageBook }}
+          style={{ width: "100%", height: "100%", marginBottom: 8 }}
+          resizeMode="contain"
+        />
+                    </View>
+                  </View>
                 </TouchableOpacity>
 
               </View>

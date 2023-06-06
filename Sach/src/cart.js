@@ -47,43 +47,25 @@ export default function Cart({ navigation, route}) {
 
 
 const postData = async (item) => {
-  const response = await fetch("https://645b097765bd868e93293770.mockapi.io/buyed", {
+  const response = await fetch("https://645b097765bd868e93293770.mockapi.io/buyed",{
       method: "POST",
       headers: { "Content-Type": "application/json",},
       Accept: "application/json",
       body: JSON.stringify(item),
     });
+    console.log ("Post thanh cong",postData)
   };
-  
-  const MyComponent = () => {
-    const myArray = [listProduct];
-    console.log ("đây là ",myArray)
-    const handlePostData = async () => {
-      for (const item of myArray) {
-        await postData(item);
-      }
-    };
-  };
-  
-
-
-  const onDelete = (deleteId) => {
-    const newList = new Array()
-    listProduct.forEach(element => {
-      if(element.id != deleteId){
-        newList.push(element)
-      }
-    });
-    setListProduct(newList)
-    setNumber(newList.length)
-    let total = 0
-    for (const e of listProduct){
-      total+= Number(e.price)
+  const handlePostData = async () => {
+    const myArray = (listProduct);
+    for (const item of myArray) {
+      await postData(item);
     }
-    console.log(amountOfMoney);
-    setTotal(total);
+    
+    console.log("data",item)
   };
 
+
+  
 
   const onDeleteAPI = async(deleteID) => {
     fetch("https://645b097765bd868e93293770.mockapi.io/ListBook/" + deleteID, {
@@ -223,7 +205,7 @@ const postData = async (item) => {
 
       <View style={{ flex: 1.5 , flexDirection: 'row', alignItems: 'center'}}>
         <Text style={{flex: 1,fontSize: 20, fontWeight: '700', marginLeft: 30}}>Tổng cộng: {new Intl.NumberFormat("vi-VN", config).format(total)}</Text>
-        <TouchableOpacity style={{flex: 1 ,backgroundColor: '#191970', alignItems:'center', padding: 10, borderRadius: 20 }}  onPress={() => handlePostData()}><Text style={{fontSize: 20, fontWeight: '500', color: "#fff"}}>Mua ngay</Text></TouchableOpacity>
+        <TouchableOpacity style={{flex: 1 ,backgroundColor: '#191970', alignItems:'center', padding: 10, borderRadius: 20 }}  onPress={handlePostData}><Text style={{fontSize: 20, fontWeight: '500', color: "#fff"}}>Mua ngay</Text></TouchableOpacity>
       </View>
     </View>
   );

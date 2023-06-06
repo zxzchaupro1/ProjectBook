@@ -10,10 +10,11 @@ import Singup from "./src/singup";
 import InfoProduct from "./src/infoProduct";
 import Cart from "./src/cart";
 import Tabbar from "./src/Tabbar";
-import Done from "./src/done";
 import Search from "./src/search";
 import Account from "./src/account";
-import library from "./src/library";
+import Contact from "./src/contact";
+import Library from "./src/library";
+
 
 
 
@@ -68,6 +69,11 @@ const App = () => {
         <Stack.Screen
           name="Cart"
           component={Cart}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Contact"
+          component={Contact}
           options={{ headerShown: false }}
         />
 

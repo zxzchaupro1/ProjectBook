@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -20,14 +20,11 @@ export default function InfoProduct({ navigation, route }) {
   };
 
   useEffect(() => {
-    console.log(info.item);
+
   }, []);
 
-  const Save = () => {
-    onSave();
-    // goback();
-  };
-  const onSave = () => {
+ 
+  const onSave = (callback) => {
     const newProduct = info.item;
     console.log("Hàm 1 được gọi");
     fetch("https://645b097765bd868e93293770.mockapi.io/ListBook", {
@@ -37,17 +34,23 @@ export default function InfoProduct({ navigation, route }) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
+      
     }); 
-    const goback = () => {
-      console.log ("hàm 2 được gọi")
-      navigation.navigate('Home')
-  
-    }
+    callback();
   };
+  const goback = () => {
+    console.log ("hàm 2 được gọi")
+    navigation.navigate('Home');
+  }
+  const handlePress = () => {
+    onSave(() => {
+      goback ();
+    });
+  };
+
 
   function gotobuy() {
     navigation.navigate('Cart')
-
   }
 
   return (
@@ -119,10 +122,11 @@ export default function InfoProduct({ navigation, route }) {
         <Text style={{ marginTop: 5, marginBottom: 10, color: "#191970", fontSize: 20,}}>
           Giới thiệu nội dung
         </Text>
+        <View style = {{ width: "100%", height: "50%"}}>
         <ScrollView>
-        <Text>{info.item.describe}</Text></ScrollView>
+        <Text>{info.item.describe}</Text></ScrollView></View>
       </View></ScrollView>
-      <View style={{ flex: 0.5 , flexDirection: 'row', alignItems: 'center', borderWidth:1}}>
+      <View style={{ flex: 0.5 , flexDirection: 'row', alignItems: 'center', }}>
         <TouchableOpacity
           style={{
             width: 190,
@@ -133,7 +137,7 @@ export default function InfoProduct({ navigation, route }) {
             borderRadius: 40,
             marginLeft: 20
           }}
-          onPress={() => Save()}
+          onPress={() => handlePress()}
         >
           <Text
             style={{ color: "#fff", fontSize: 20, fontWeight: "400",  }}

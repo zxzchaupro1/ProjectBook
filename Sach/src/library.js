@@ -15,7 +15,7 @@ import cartStore from "./cartStore";
 
 
 
-export default function Library({ navigation, route }) {
+export default function Library ({ navigation, route }) {
   const info = route
   const [listProduct, setListProduct] = useState();
   const [number, setNumber] = useState();
@@ -29,23 +29,18 @@ export default function Library({ navigation, route }) {
   const listCartP = cartStore(state => state.listProducCart)
   const listttt = cartStore(state => state.list);
 
+
+  const goToContact = (item) => {
+    navigation.navigate('Contact', { item: item })
+  }
+
   const getListProduct = async () => {
     await fetch("https://645b097765bd868e93293770.mockapi.io/buyed")
       .then((Response) => Response.json())
       .then((json) => {
         setListProduct(json);
-        // console.log("list", listProduct);
         listCartP(json)
-        console.log(listttt);
-
         setNumber(json.length)
-        let amountOfMoney = 0
-        let money = 0
-        for (let i = 0; i < json.length; i++) {
-          money = json[i].price
-          amountOfMoney += money
-        }
-        setTotal(amountOfMoney)
       })
       .catch((error) => {
         console.log(error);
@@ -111,6 +106,7 @@ export default function Library({ navigation, route }) {
           data={listProduct}
           renderItem={({ item }) => (
             <View style={{ flexDirection: 'row', padding: 20, backgroundColor: '#fff', margin: 15, borderRadius: 10 }}>
+              <TouchableOpacity onPress={() => goToContact(item)}>
               <Image
                 style={{ width: 150, height: 150, marginLeft: -40 }}
                 source={{ uri: item.imageBook }}
@@ -119,6 +115,7 @@ export default function Library({ navigation, route }) {
               <View>
                 <Text style={{ fontSize: 15, fontWeight: '700' }}>{item.name}</Text>
               </View>
+              </TouchableOpacity>
             </View>
           )}
           keyExtractor={(item) => item.id}

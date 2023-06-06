@@ -15,6 +15,7 @@ import { Alert } from "react-native";
 
 export default function Home({ navigation }) {
   const [listCustomer, setListCustomer] = useState();
+  
 
   const getListCustomer = async () => {
     await fetch("https://6459c36b8badff578e13fe4c.mockapi.io/Book")
