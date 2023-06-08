@@ -1,7 +1,7 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Image } from "react-native";
-import { Category, Home, Library, Search, Setting } from "../../screens";
-import { AppRouter } from "../../constants";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
+import { Category, Home, Library, Search, Setting } from '../../screens';
+import { AppRouter } from '../../constants';
 
 const Tab = createBottomTabNavigator();
 export const Tabbar = () => {
@@ -11,10 +11,10 @@ export const Tabbar = () => {
         name={AppRouter.home}
         component={Home}
         options={{
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require("../../../src/asset/home.png")}
+              source={require('../../../src/asset/home.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),
@@ -25,10 +25,10 @@ export const Tabbar = () => {
         name={AppRouter.category}
         component={Category}
         options={{
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require("../../../src/asset/cart.png")}
+              source={require('../../../src/asset/cart.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),
@@ -39,10 +39,10 @@ export const Tabbar = () => {
         name={AppRouter.search}
         component={Search}
         options={{
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require("../../../src/asset/search.png")}
+              source={require('../../../src/asset/search.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),
@@ -53,10 +53,10 @@ export const Tabbar = () => {
         name={AppRouter.library}
         component={Library}
         options={{
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require("../src/asset/book.png")}
+              source={require('../../../src/asset/book.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),
@@ -67,10 +67,10 @@ export const Tabbar = () => {
         name={AppRouter.setting}
         component={Setting}
         options={{
-          headerShown: false,
+          headerShown: true,
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={require("../../../src/asset/user.png")}
+              source={require('../../../src/asset/user.png')}
               style={{ tintColor: color, width: size, height: size }}
             />
           ),

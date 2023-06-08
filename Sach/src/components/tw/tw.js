@@ -1,3 +1,3 @@
-import { create } from "twrnc";
+import { create } from 'twrnc';
 
-export const tw = create(require("../../../tailwind.config"));
+export const tw = create(require('../../../tailwind.config'));
