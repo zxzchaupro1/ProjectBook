@@ -52,8 +52,7 @@ export const Banner = memo((props) => {
                     carouselRef.current.scrollToIndex(index);
                 }}
             >
-                <ImageBackground source={{ uri: uri }} style={styles.imageBackground}>
-                </ImageBackground>
+                <ImageBackground source={{ uri: uri }} style={styles.imageBackground} />
                 <View style={styles.lowerContainer}>
                     <Text style={styles.titleText}>{title}</Text>
                     <Text style={styles.contentText}>{content}</Text>
@@ -80,26 +79,26 @@ export const Banner = memo((props) => {
 });
 
 const styles = StyleSheet.create({
-    container: { backgroundColor: '#141518', paddingVertical: 20 },
+    container: { backgroundColor: '#1f2024', paddingVertical: 20 },
     carousel: {
-        backgroundColor: '#141518',
+        backgroundColor: '#1f2024',
         aspectRatio: 1.5,
         flexGrow: 0,
         marginBottom: 20,
     },
     item: {
         borderWidth: 2,
-        backgroundColor: 'white',
+        backgroundColor: '#fff',
         flex: 1,
         borderRadius: 5,
-        borderColor: 'white',
+        borderColor: '#fff',
         elevation: 3,
     },
     imageBackground: {
         flex: 2,
-        backgroundColor: '#EBEBEB',
+        backgroundColor: '#fff',
         borderWidth: 5,
-        borderColor: 'white',
+        borderColor: '#fff',
     },
     rightTextContainer: {
         marginLeft: 'auto',
@@ -118,9 +117,12 @@ const styles = StyleSheet.create({
     titleText: {
         fontWeight: 'bold',
         fontSize: 18,
+        color: '#191970'
     },
     contentText: {
         marginTop: 10,
         fontSize: 12,
+        color: '#191970'
+
     },
 });
