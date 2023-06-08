@@ -8,8 +8,7 @@ import { useSearchBook } from '../../hooks';
 export const Search = memo(() => {
   const [textSearch, setTextSearch] = useState('');
   const { status, data, error, isFetching } = useSearchBook(textSearch);
-  console.log('data', data);
-
+  
   // handle debouce search when user onpress
   const handleSearch = useCallback(
     debounce((text) => {
