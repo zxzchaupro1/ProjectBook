@@ -19,11 +19,8 @@ export default function InfoProduct({ navigation, route }) {
     maximumFractionDigits: 9,
   };
 
-  useEffect(() => {
+  useEffect(() => {}, []);
 
-  }, []);
-
- 
   const onSave = (callback) => {
     const newProduct = info.item;
     console.log("Hàm 1 được gọi");
@@ -34,23 +31,21 @@ export default function InfoProduct({ navigation, route }) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      
-    }); 
+    });
     callback();
   };
   const goback = () => {
-    console.log ("hàm 2 được gọi")
-    navigation.navigate('Home');
-  }
+    console.log("hàm 2 được gọi");
+    navigation.goback();
+  };
   const handlePress = () => {
     onSave(() => {
-      goback ();
+      goback();
     });
   };
 
-
   function gotobuy() {
-    navigation.navigate('Cart')
+    navigation.navigate("Cart");
   }
 
   return (
@@ -92,41 +87,61 @@ export default function InfoProduct({ navigation, route }) {
         >
           Chi tiết sản phẩm
         </Text>
-        <TouchableOpacity style={{ marginLeft: '25%' }} onPress={() => navigation.navigate('Cart')}>
+        <TouchableOpacity
+          style={{ marginLeft: "25%" }}
+          onPress={() => navigation.navigate("Cart")}
+        >
           <Image
             source={require("../src/asset/shopping-cart.png")}
             style={{ width: 20, height: 20 }}
           />
         </TouchableOpacity>
-      </View><ScrollView>
-      <View style={{ padding: 20, flex: 1}}>
-        <Image
-          source={{ uri: info.item.imageBook }}
-          style={{ width: "100%", height: "50%", marginBottom: 8 }}
-          resizeMode="contain"
-        />
-        <Text style={{ fontSize: 30, fontWeight: "700",}}>
-          {info.item.name}
-        </Text>
-        <Text> Tác giả: <Text style={{ fontSize: 15, fontWeight: "700" }}>
-          {info.item.author}
-        </Text>
-        </Text> 
-        <Text> Thể loại : <Text style={{ fontSize: 15, fontWeight: "700" }}>
-          {info.item.topic}
-        </Text>
-        </Text> 
-        <Text style={{ color: "#EE0033", fontSize: 20, fontWeight: "700" }}>
-          {new Intl.NumberFormat("vi-VN", config).format(info.item.price)}
-        </Text>
-        <Text style={{ marginTop: 5, marginBottom: 10, color: "#191970", fontSize: 20,}}>
-          Giới thiệu nội dung
-        </Text>
-        <View style = {{ width: "100%", height: "50%"}}>
-        <ScrollView>
-        <Text>{info.item.describe}</Text></ScrollView></View>
-      </View></ScrollView>
-      <View style={{ flex: 0.5 , flexDirection: 'row', alignItems: 'center', }}>
+      </View>
+      <ScrollView>
+        <View style={{ padding: 20, flex: 1 }}>
+          <Image
+            source={{ uri: info.item.imageBook }}
+            style={{ width: "100%", height: "50%", marginBottom: 8 }}
+            resizeMode='contain'
+          />
+          <Text style={{ fontSize: 30, fontWeight: "700" }}>
+            {info.item.name}
+          </Text>
+          <Text>
+            {" "}
+            Tác giả:{" "}
+            <Text style={{ fontSize: 15, fontWeight: "700" }}>
+              {info.item.author}
+            </Text>
+          </Text>
+          <Text>
+            {" "}
+            Thể loại :{" "}
+            <Text style={{ fontSize: 15, fontWeight: "700" }}>
+              {info.item.topic}
+            </Text>
+          </Text>
+          <Text style={{ color: "#EE0033", fontSize: 20, fontWeight: "700" }}>
+            {new Intl.NumberFormat("vi-VN", config).format(info.item.price)}
+          </Text>
+          <Text
+            style={{
+              marginTop: 5,
+              marginBottom: 10,
+              color: "#191970",
+              fontSize: 20,
+            }}
+          >
+            Giới thiệu nội dung
+          </Text>
+          <View style={{ width: "100%", height: "50%" }}>
+            <ScrollView>
+              <Text>{info.item.describe}</Text>
+            </ScrollView>
+          </View>
+        </View>
+      </ScrollView>
+      <View style={{ flex: 0.5, flexDirection: "row", alignItems: "center" }}>
         <TouchableOpacity
           style={{
             width: 190,
@@ -135,27 +150,23 @@ export default function InfoProduct({ navigation, route }) {
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 40,
-            marginLeft: 20
+            marginLeft: 20,
           }}
           onPress={() => handlePress()}
         >
-          <Text
-            style={{ color: "#fff", fontSize: 20, fontWeight: "400",  }}
-          >
+          <Text style={{ color: "#fff", fontSize: 20, fontWeight: "400" }}>
             Thêm vào giỏ hàng
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
-           width: 190,
+            width: 190,
             height: 49,
             backgroundColor: "#191970",
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 40,
-            marginLeft: 10
-            
-            
+            marginLeft: 10,
           }}
           onPress={() => gotobuy()}
         >
@@ -164,7 +175,7 @@ export default function InfoProduct({ navigation, route }) {
           </Text>
         </TouchableOpacity>
       </View>
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />
     </View>
   );
 }

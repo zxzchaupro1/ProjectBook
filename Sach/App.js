@@ -1,84 +1,50 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ThemeProvider } from "@rneui/themed";
+import { rneui } from "./src/utils";
+import { AppRouter } from "./src/constants";
+import { FullScreenLoadingProvider } from "./src/contexts";
 
-
-
-import Login from "./src/login";
-import Splash from "./src/splash";
-import Singup from "./src/singup";
-import InfoProduct from "./src/infoProduct";
-import Cart from "./src/cart";
-import Tabbar from "./src/Tabbar";
-import Search from "./src/search";
-import Account from "./src/account";
-import Contact from "./src/contact";
-import Library from "./src/library";
-
-
-
+import { Book, Login, Singup, Search } from "./src/screens";
+import { Tabbar } from "./src/components";
 
 const Stack = createNativeStackNavigator();
 
-
-
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Singup"
-          component={Singup}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={Tabbar}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="InfoProduct"
-          component={InfoProduct}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Search"
-          component={Search}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Account"
-          component={Tabbar}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Library"
-          component={Tabbar}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Cart"
-          component={Cart}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Contact"
-          component={Contact}
-          options={{ headerShown: false }}
-        />
-
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <ThemeProvider theme={rneui}>
+        <FullScreenLoadingProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
+              <Stack.Screen name='bottom-tab' component={Tabbar} />
+              <Stack.Screen
+                name={AppRouter.login}
+                component={Login}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name={AppRouter.signup}
+                component={Singup}
+                options={{ headerShown: false }}
+              />
+              {/* screen  */}
+              <Stack.Screen
+                name={AppRouter.book}
+                component={Book}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name={AppRouter.search}
+                component={Search}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </FullScreenLoadingProvider>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 };
 

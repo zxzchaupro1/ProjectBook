@@ -13,8 +13,7 @@ import {
 
 export default function Contact({ navigation, route }) {
   const info = route.params;
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   return (
     <View>
       <View
@@ -36,7 +35,7 @@ export default function Contact({ navigation, route }) {
       >
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Library');
+            navigation.navigate("Library");
           }}
           style={{ padding: 20 }}
         >
@@ -52,13 +51,14 @@ export default function Contact({ navigation, route }) {
             color: "#fff",
           }}
         >
-         {info.item.name}
+          {info.item.name}
         </Text>
       </View>
       <ScrollView>
-      <View style={{}}>
-        <Text>{info.item.content}</Text>
-      </View></ScrollView>
+        <View style={{}}>
+          <Text>{info.item.content}</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }

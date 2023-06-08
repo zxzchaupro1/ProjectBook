@@ -12,105 +12,101 @@ import {
   Alert,
 } from "react-native";
 import cartStore from "./cartStore";
-export default function Cart({ navigation, route}) {
+export default function Cart({ navigation, route }) {
   const [listProduct, setListProduct] = useState();
   const [number, setNumber] = useState();
   const [total, setTotal] = useState();
-  const listCartP = cartStore(state => state.listProducCart)
-
-
+  const listCartP = cartStore((state) => state.listProducCart);
 
   useEffect(() => {
     getListProduct();
   }, [total]);
-
 
   const getListProduct = async () => {
     await fetch("https://645b097765bd868e93293770.mockapi.io/ListBook")
       .then((Response) => Response.json())
       .then((json) => {
         setListProduct(json);
-        listCartP(json)
-        setNumber(json.length)
-        let total1 = 0
+        listCartP(json);
+        setNumber(json.length);
+        let total1 = 0;
         json.forEach((element) => {
           var tongSoTien = element.price;
           total1 = total1 + tongSoTien;
         });
-          console.log("Tiền",total1)
-        setTotal(total1)
+        console.log("Tiền", total1);
+        setTotal(total1);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-
-const postData = async (item) => {
-  const response = await fetch("https://645b097765bd868e93293770.mockapi.io/buyed",{
-      method: "POST",
-      headers: { "Content-Type": "application/json",},
-      Accept: "application/json",
-      body: JSON.stringify(item),
-    });
-    console.log ("Post thanh cong",postData)
+  const postData = async (item) => {
+    const response = await fetch(
+      "https://645b097765bd868e93293770.mockapi.io/buyed",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        Accept: "application/json",
+        body: JSON.stringify(item),
+      },
+    );
+    console.log("Post thanh cong", postData);
   };
   const handlePostData = async () => {
-    const myArray = (listProduct);
+    const myArray = listProduct;
     for (const item of myArray) {
       await postData(item);
     }
-    
-    console.log("data",item)
+
+    console.log("data", item);
   };
 
-
-  
-
-  const onDeleteAPI = async(deleteID) => {
+  const onDeleteAPI = async (deleteID) => {
     fetch("https://645b097765bd868e93293770.mockapi.io/ListBook/" + deleteID, {
-      method: 'DELETE',
-    })
-    .then(res => {
-      if(res.status == 200) {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.status == 200) {
         // Alert.alert('Thông báo',"Xóa thành công")
-        getListProduct()
+        getListProduct();
       } else {
-        Alert.alert('Thông báo',"Xóa không thành cong")
+        Alert.alert("Thông báo", "Xóa không thành cong");
       }
-    })
-  }
+    });
+  };
   const buy = () => {
-    Alert.alert ('Thông báo',"Đã mua thành công")
-    return 
-  }
+    Alert.alert("Thông báo", "Đã mua thành công");
+    return;
+  };
 
   const updateItem = (item, bool) => {
-
     // console.log(check);
     if (!bool) {
-      item.quantityBuy = item.quantityBuy + 1
-    item.quantity = item.quantity - 1
+      item.quantityBuy = item.quantityBuy + 1;
+      item.quantity = item.quantity - 1;
     } else {
-      item.quantityBuy = item.quantityBuy - 1
-    item.quantity = item.quantity + 1
+      item.quantityBuy = item.quantityBuy - 1;
+      item.quantity = item.quantity + 1;
     }
-    
+
     const requestOptions = {
       method: "PUT",
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(item)
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
     };
-    fetch("https://645b097765bd868e93293770.mockapi.io/ListBook/" + item.id, requestOptions)
-    .then(res => {
-      if(res.status == 200) {
-        console.log("Update thanh cong id: " , item.id);
-        getListProduct()
+    fetch(
+      "https://645b097765bd868e93293770.mockapi.io/ListBook/" + item.id,
+      requestOptions,
+    ).then((res) => {
+      if (res.status == 200) {
+        console.log("Update thanh cong id: ", item.id);
+        getListProduct();
       } else {
         console.log("That bai");
       }
-    })
-  }
+    });
+  };
   const config = {
     style: "currency",
     currency: "VND",
@@ -120,7 +116,7 @@ const postData = async (item) => {
   return (
     <View style={styles.container}>
       <View
-         style={{
+        style={{
           backgroundColor: "#191970",
           flexDirection: "row",
           alignItems: "center",
@@ -169,43 +165,75 @@ const postData = async (item) => {
         Tổng số: {number} sản phẩm
       </Text>
 
-      <StatusBar style="auto" />
-      <View style={{ flex: 10, backgroundColor: '#F7F7F7' }}>
+      <StatusBar style='auto' />
+      <View style={{ flex: 10, backgroundColor: "#F7F7F7" }}>
         <FlatList
           data={listProduct}
           renderItem={({ item }) => (
-            <View style={{flexDirection:'row', padding: 20, backgroundColor: '#fff', margin: 15, borderRadius: 20}}>
+            <View
+              style={{
+                flexDirection: "row",
+                padding: 20,
+                backgroundColor: "#fff",
+                margin: 15,
+                borderRadius: 20,
+              }}
+            >
               <Image
-                style={{ width: 150, height: 150,marginLeft: -40 }}
+                style={{ width: 150, height: 150, marginLeft: -40 }}
                 source={{ uri: item.imageBook }}
-                resizeMode="contain"
-
+                resizeMode='contain'
               />
               <View>
-              <Text style={{fontSize: 15, fontWeight: '700'}}>{item.name}</Text>
-              <Text style = {{ marginTop: 10}}> Giá tiền:   
-                <Text style={{color: 'red', fontSize: 15, marginBottom: 20, }}>
-                {new Intl.NumberFormat("vi-VN", config).format(item.price)}
-              </Text>
-              </Text>
+                <Text style={{ fontSize: 15, fontWeight: "700" }}>
+                  {item.name}
+                </Text>
+                <Text style={{ marginTop: 10 }}>
+                  {" "}
+                  Giá tiền:
+                  <Text
+                    style={{ color: "red", fontSize: 15, marginBottom: 20 }}
+                  >
+                    {new Intl.NumberFormat("vi-VN", config).format(item.price)}
+                  </Text>
+                </Text>
               </View>
 
-              <View style={{marginLeft: "25%"}}>
-              <TouchableOpacity onPress={() => onDeleteAPI(item.id)}>
-                <Text style={{fontSize: 13, fontWeight: '600', marginLeft: 20}}>X</Text>
-              </TouchableOpacity>
-
+              <View style={{ marginLeft: "25%" }}>
+                <TouchableOpacity onPress={() => onDeleteAPI(item.id)}>
+                  <Text
+                    style={{ fontSize: 13, fontWeight: "600", marginLeft: 20 }}
+                  >
+                    X
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
           )}
           keyExtractor={(item) => item.id}
-
         ></FlatList>
-      </View> 
+      </View>
 
-      <View style={{ flex: 1.5 , flexDirection: 'row', alignItems: 'center'}}>
-        <Text style={{flex: 1,fontSize: 20, fontWeight: '700', marginLeft: 30}}>Tổng cộng: {new Intl.NumberFormat("vi-VN", config).format(total)}</Text>
-        <TouchableOpacity style={{flex: 1 ,backgroundColor: '#191970', alignItems:'center', padding: 10, borderRadius: 20 }}  onPress={handlePostData}><Text style={{fontSize: 20, fontWeight: '500', color: "#fff"}}>Mua ngay</Text></TouchableOpacity>
+      <View style={{ flex: 1.5, flexDirection: "row", alignItems: "center" }}>
+        <Text
+          style={{ flex: 1, fontSize: 20, fontWeight: "700", marginLeft: 30 }}
+        >
+          Tổng cộng: {new Intl.NumberFormat("vi-VN", config).format(total)}
+        </Text>
+        <TouchableOpacity
+          style={{
+            flex: 1,
+            backgroundColor: "#191970",
+            alignItems: "center",
+            padding: 10,
+            borderRadius: 20,
+          }}
+          onPress={handlePostData}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "500", color: "#fff" }}>
+            Mua ngay
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -218,4 +246,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
