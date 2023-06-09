@@ -1,7 +1,7 @@
 import instance from './instance';
 
 export const getAllBooks = () => {
-  return instance.get('Book');
+  return instance.get('book');
 };
 
 export const getBookByCategory = (id) => {
@@ -9,5 +9,5 @@ export const getBookByCategory = (id) => {
 };
 
 export const search = (name) => {
-  return instance.post('Book', { name });
+  return instance.post(`books?q=${name}`);
 };

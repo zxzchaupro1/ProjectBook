@@ -106,7 +106,7 @@
       "id": 5
     }
   ],
-  "book" : [
+  "book": [
     {
       "name": "Cách Học Ngoại Ngữ Nhanh Và Không Bao Giờ Quên",
       "author": "Gabriel Wyner",
@@ -250,6 +250,14 @@
       "categoryId": 11,
       "createdAt": 1686288043843,
       "id": 23
+    },
+    {
+      "name": "",
+      "id": 24
+    },
+    {
+      "name": "",
+      "id": 25
     }
   ]
 }
