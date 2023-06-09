@@ -1,19 +1,10 @@
-import React, { useRef } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  Image,
-  Pressable,
-} from "react-native";
-import Carousel from "react-native-anchor-carousel";
+import React, { useRef } from 'react';
+import { StyleSheet, Text, View, Dimensions, Image, Pressable } from 'react-native';
+import Carousel from 'react-native-anchor-carousel';
 
-const { width: windowWidth } = Dimensions.get("window");
-
-const ITEM_WIDTH = 0.7 * windowWidth;
-const SEPARATOR_WIDTH = 10;
-export const CategoryBook = ({ data, topic }) => {
+const { width: windowWidth } = Dimensions.get('window');
+const SEPARATOR_WIDTH = 2;
+export const CategoryBook = ({ data, topic,itemWidth }) => {
   const carouselRef = useRef(null);
 
   function renderHeader() {
@@ -24,8 +15,10 @@ export const CategoryBook = ({ data, topic }) => {
     );
   }
 
+
   function renderItem({ item, index }) {
     const { imageBook: image, name: title, author } = item;
+    console.log('image',image);
     return (
       <Pressable
         activeOpacity={1}
@@ -51,14 +44,14 @@ export const CategoryBook = ({ data, topic }) => {
 
   return (
     <View style={styles.container}>
-      {renderHeader()}
+      {topic && renderHeader()}
       <Carousel
         keyExtractor={(item) => item?.id}
         style={[styles.carousel, styles.content]}
         ref={carouselRef}
         data={data}
         renderItem={renderItem}
-        itemWidth={ITEM_WIDTH}
+        itemWidth={ (itemWidth ? itemWidth : 0.6) * windowWidth}
         separatorWidth={SEPARATOR_WIDTH}
         inActiveScale={1}
         inActiveOpacity={1}
@@ -71,18 +64,17 @@ export const CategoryBook = ({ data, topic }) => {
 const styles = StyleSheet.create({
   content: {},
   container: {
-    backgroundColor: "#fff",
-    alignItems: "flex-start",
-    height: "auto",
+    backgroundColor: '#fff',
+    alignItems: 'flex-start',
+    height: 'auto',
   },
   carousel: {
     width: windowWidth,
-    height: ITEM_WIDTH,
     flexGrow: 0,
   },
   item: {
-    backgroundColor: "white",
-    height: "100%",
+    backgroundColor: 'white',
+    height: '100%',
   },
   image: {
     width: 120,
@@ -91,27 +83,27 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   lowerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     padding: 12,
   },
   lowerLeft: {
-    width: "50%",
+    width: '50%',
   },
   descriptionText: {
     fontSize: 12,
-    color: "#676E72",
-    fontWeight: "bold",
+    color: '#676E72',
+    fontWeight: 'bold',
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     marginVertical: 20,
-    borderColor: "#A0A0A0",
+    borderColor: '#A0A0A0',
   },
   name: {
     fontSize: 14,
-    fontWeight: "500",
-    color: "#202C38",
+    fontWeight: '500',
+    color: '#202C38',
   },
 });

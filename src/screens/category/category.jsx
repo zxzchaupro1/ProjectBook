@@ -21,20 +21,18 @@ export const Category = memo(() => {
   }, [data]);
 
   return (
-    <View style={tw`flex-1 bg-white -pb-50px`}>
+    <ScrollView style={tw`bg-white`}>
       {isLoading || isFetching ? (
         <View style={tw`flex justify-center items-center`}>
           <Text>Đang tải...</Text>
         </View>
       ) : null}
       {isError ? <Text>{error.message}</Text> : null}
-      <ScrollView style={tw`mx-20px`}>
-        {rs.map((item, idx) => (
-          <View key={idx}>
-            <CategoryBook data={item.items} topic={item.topic} />
-          </View>
-        ))}
-      </ScrollView>
-    </View>
+      {rs.map((item, idx) => (
+        <View key={idx} style={tw`px-16px`}>
+          <CategoryBook data={item.items} topic={item.topic}/>
+        </View>
+      ))}
+    </ScrollView>
   );
 });

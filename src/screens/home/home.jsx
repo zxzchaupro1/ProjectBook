@@ -1,9 +1,8 @@
 import { memo, useMemo } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import _ from "lodash";
 import { Banner, CategoryBook, tw } from "../../components";
 import { useQueryBooks } from "../../hooks";
-import dayjs from "dayjs";
 import { Text } from "@rneui/themed";
 
 export const Home = memo(({ navigation }) => {
@@ -20,7 +19,7 @@ export const Home = memo(({ navigation }) => {
     return results;
   }, [data]);
   return (
-    <View>
+    <ScrollView style={tw`bg-white`}>
       <Banner />
       {isLoading || isFetching ? (
         <View style={tw`flex justify-center items-center`}>
@@ -29,8 +28,8 @@ export const Home = memo(({ navigation }) => {
       ) : null}
       {isError ? <Text>{error.message}</Text> : null}
       <View style={tw`px-16px`}>
-        <CategoryBook data={bookNew} topic={"Sách mới"} />
+        <CategoryBook data={bookNew} topic={"Sách mới"} itemWidth={0.4}/>
       </View>
-    </View>
+    </ScrollView>
   );
 });
