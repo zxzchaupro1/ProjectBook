@@ -8,6 +8,7 @@
     "android": "expo start --android",
     "server:watch": "json-server-auth --watch db.json --hort 0.0.0.0 --no-cors --no-gzip",
     "server:dev": "node server.js",
+    "start:server" : "json-server --host 0.0.0.0 db.json",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
