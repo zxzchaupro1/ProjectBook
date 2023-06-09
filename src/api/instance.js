@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const baseURL = 'https://6459c36b8badff578e13fe4c.mockapi.io/';
+const baseURL = 'http://192.168.0.115:3000';
 
 const instance = axios.create({
   baseURL,
   timeout: 5000,
+  headers: { accept: 'application/json' },
 });
 
 instance.interceptors.request.use(

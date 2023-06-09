@@ -7,7 +7,7 @@ import { rneui } from './src/utils';
 import { AppRouter } from './src/constants';
 import { FullScreenLoadingProvider } from './src/contexts';
 
-import { Book, Login, Singup, Search } from './src/screens';
+import { Book, Login, Singup, Search, CategoryDetail } from './src/screens';
 import { Tabbar } from './src/components';
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +27,11 @@ const App = () => {
                 {/* screen  */}
                 <Stack.Screen name={AppRouter.book} component={Book} options={{ headerShown: false }} />
                 <Stack.Screen name={AppRouter.search} component={Search} options={{ headerShown: false }} />
+                <Stack.Screen
+                  name={AppRouter.categoryDetail}
+                  component={CategoryDetail}
+                  options={{ headerShown: true }}
+                />
               </Stack.Navigator>
             </NavigationContainer>
           </FullScreenLoadingProvider>

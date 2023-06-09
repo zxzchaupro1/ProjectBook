@@ -105,5 +105,151 @@
       "active": "true",
       "id": 5
     }
+  ],
+  "book" : [
+    {
+      "name": "Cách Học Ngoại Ngữ Nhanh Và Không Bao Giờ Quên",
+      "author": "Gabriel Wyner",
+      "image": "https://docsachhay.net/images/e-book/yeu-phai-trai-tim-sat-da.jpg",
+      "isPopular": true,
+      "price": 100000,
+      "content": "content",
+      "description": "Cách Học Ngoại Ngữ Nhanh Và Không Bao Giờ Quên là tài liệu học ngoại ngữ được đánh giá cao nhất hiện nay trên toàn thế giới bới nó không đơn thuần là sách dạy ngoại ngữ mà là một cú đột phá tư duy xuất sắc để làm chủ não bộ.",
+      "categoryId": 7,
+      "createdAt": 1686287767946,
+      "id": 12
+    },
+    {
+      "name": "Chiến Lược IELTS 7.0",
+      "author": "Võ Trung Kiên",
+      "image": "https://docsachhay.net/images/e-book/chien-luoc-ielts-70.jpg",
+      "isPopular": true,
+      "price": 100000,
+      "content": "content",
+      "description": "Chiến Lược IELTS 7.0 là cuốn sách cần cho bất cứ bạn học tiếng Anh nào, đặc biệt là đang theo đuổi chứng chỉ IELTS với số điểm tối thiểu 7.0",
+      "categoryId": 8,
+      "createdAt": 1686287808898,
+      "id": 13
+    },
+    {
+      "name": "Dám Thất Bại",
+      "author": "Billi P.S.Lim",
+      "image": "https://docsachhay.net/images/e-book/dam-that-bai.jpg",
+      "isPopular": false,
+      "price": 160000,
+      "content": "content",
+      "description": "Dám thất bại là cuốn sách gối đầu giường dành cho tất cả những ai đang trên con đường đi đến thành công. Là người bạn đồng hành khi bạn cảm thấy mình hụt hẫng, thất bại và đơn độc.",
+      "categoryId": 7,
+      "createdAt": 1686287859826,
+      "id": 14
+    },
+    {
+      "name": "Vệ Sinh Yếu Quyết",
+      "author": "Hải Thượng Lãn Ông",
+      "image": "https://docsachhay.net/images/e-book/ve-sinh-yeu-quyet.jpg",
+      "isPopular": true,
+      "price": 160000,
+      "content": "content",
+      "description": "Hải Thượng Lãn Ông xuất hiện trong lịch sử y học Việt Nam với tư cách là ông tổ ngành y, là người đi đầu trong việc phát hiện và chữa bệnh thời xưa ở nước ta. Suốt cả cuộc đời mình, ông đều tận tụy với nghề nghiệp, luôn tìm cách đi sâu nghiên cứu lý luận Trung y thông qua những cuốn sách ý học cổ truyền. Để rồi, khi đi đến hết cuộc đời của mình, ông đã để lại cho nhân dân ta không ít những cuốn sách, những tài liệu quý giá về y học. Trong đó cuốn sách “Vệ Sinh Yếu Quyết” là một tác phẩm viết về cách để bảo về bản thân khỏi bệnh tật và có được một đời sống mạnh khỏe.",
+      "categoryId": 8,
+      "createdAt": 1686287893858,
+      "id": 15
+    },
+    {
+      "name": "Vệ Sinh Yếu Quyết 2",
+      "author": "Hải Thượng Lãn Ông",
+      "image": "https://docsachhay.net/images/e-book/ve-sinh-yeu-quyet.jpg",
+      "isPopular": true,
+      "price": 160000,
+      "content": "content",
+      "description": "Hải Thượng Lãn Ông xuất hiện trong lịch sử y học Việt Nam với tư cách là ông tổ ngành y, là người đi đầu trong việc phát hiện và chữa bệnh thời xưa ở nước ta. Suốt cả cuộc đời mình, ông đều tận tụy với nghề nghiệp, luôn tìm cách đi sâu nghiên cứu lý luận Trung y thông qua những cuốn sách ý học cổ truyền. Để rồi, khi đi đến hết cuộc đời của mình, ông đã để lại cho nhân dân ta không ít những cuốn sách, những tài liệu quý giá về y học. Trong đó cuốn sách “Vệ Sinh Yếu Quyết” là một tác phẩm viết về cách để bảo về bản thân khỏi bệnh tật và có được một đời sống mạnh khỏe.",
+      "categoryId": 8,
+      "createdAt": 1686287898362,
+      "id": 16
+    },
+    {
+      "name": "Viết Gì Cũng Đúng",
+      "author": "Anthony Weston",
+      "image": "https://docsachhay.net/images/e-book/viet-gi-cung-dung.jpg",
+      "isPopular": true,
+      "price": 50000,
+      "content": "content",
+      "description": "“Viết Gì Cũng Đúng” của tác giả Anthony Weston giúp người đọc nhận thức toàn diện hơn về biện luận và trình bày lí lẽ xoay quanh một vấn đề nào đó. Khi bạn làm việc, biện luận đóng vai trò quan trọng trong việc nâng cao năng lực và khả năng phân tích năng lực của bạn.",
+      "categoryId": 9,
+      "createdAt": 1686287936698,
+      "id": 17
+    },
+    {
+      "name": "Viết Gì Cũng Đúng 2",
+      "author": "Anthony Weston",
+      "image": "https://docsachhay.net/images/e-book/viet-gi-cung-dung.jpg",
+      "isPopular": true,
+      "price": 50000,
+      "content": "content",
+      "description": "“Viết Gì Cũng Đúng” của tác giả Anthony Weston giúp người đọc nhận thức toàn diện hơn về biện luận và trình bày lí lẽ xoay quanh một vấn đề nào đó. Khi bạn làm việc, biện luận đóng vai trò quan trọng trong việc nâng cao năng lực và khả năng phân tích năng lực của bạn.",
+      "categoryId": 9,
+      "createdAt": 1686287938354,
+      "id": 18
+    },
+    {
+      "name": "Viết Gì Cũng Đúng 3",
+      "author": "Anthony Weston",
+      "image": "https://docsachhay.net/images/e-book/viet-gi-cung-dung.jpg",
+      "isPopular": false,
+      "price": 50000,
+      "content": "content",
+      "description": "“Viết Gì Cũng Đúng” của tác giả Anthony Weston giúp người đọc nhận thức toàn diện hơn về biện luận và trình bày lí lẽ xoay quanh một vấn đề nào đó. Khi bạn làm việc, biện luận đóng vai trò quan trọng trong việc nâng cao năng lực và khả năng phân tích năng lực của bạn.",
+      "categoryId": 9,
+      "createdAt": 1686287943146,
+      "id": 19
+    },
+    {
+      "name": "Bên Trời Phố Lạ",
+      "author": "Yến Quỳnh",
+      "image": "https://docsachhay.net/images/e-book/ben-troi-pho-la.jpg",
+      "isPopular": false,
+      "price": 50000,
+      "content": "content",
+      "description": "Hồng Kim làm việc tại một trại trẻ mồ côi SOS gần nhà, một cô gái đã ngoài hai mươi hai mà nhìn trông như mới mười bảy vậy. Cô hồn nhiên, ngây thơ, xinh đẹp lại rất tốt bụng, cô yêu trẻ con vô cùng. Mẹ cô không may mắc phải căn bệnh hiểm nghèo, cha lại không còn, mối lo duy nhất của mẹ là cuộc sống của Hồng Kim sao cho ổn định nhất.",
+      "categoryId": 10,
+      "createdAt": 1686287993138,
+      "id": 20
+    },
+    {
+      "name": "Bên Trời Phố Lạ 2",
+      "author": "Yến Quỳnh",
+      "image": "https://docsachhay.net/images/e-book/ben-troi-pho-la.jpg",
+      "isPopular": false,
+      "price": 50000,
+      "content": "content",
+      "description": "Hồng Kim làm việc tại một trại trẻ mồ côi SOS gần nhà, một cô gái đã ngoài hai mươi hai mà nhìn trông như mới mười bảy vậy. Cô hồn nhiên, ngây thơ, xinh đẹp lại rất tốt bụng, cô yêu trẻ con vô cùng. Mẹ cô không may mắc phải căn bệnh hiểm nghèo, cha lại không còn, mối lo duy nhất của mẹ là cuộc sống của Hồng Kim sao cho ổn định nhất.",
+      "categoryId": 10,
+      "createdAt": 1686287994611,
+      "id": 21
+    },
+    {
+      "name": "Bên Trời Phố Lạ 3",
+      "author": "Yến Quỳnh",
+      "image": "https://docsachhay.net/images/e-book/ben-troi-pho-la.jpg",
+      "isPopular": true,
+      "price": 40000,
+      "content": "content",
+      "description": "Hồng Kim làm việc tại một trại trẻ mồ côi SOS gần nhà, một cô gái đã ngoài hai mươi hai mà nhìn trông như mới mười bảy vậy. Cô hồn nhiên, ngây thơ, xinh đẹp lại rất tốt bụng, cô yêu trẻ con vô cùng. Mẹ cô không may mắc phải căn bệnh hiểm nghèo, cha lại không còn, mối lo duy nhất của mẹ là cuộc sống của Hồng Kim sao cho ổn định nhất.",
+      "categoryId": 10,
+      "createdAt": 1686288001242,
+      "id": 22
+    },
+    {
+      "name": "The Prince and the Pauper",
+      "author": "Mark Twain",
+      "image": "https://docsachhay.net/images/e-book/the-prince-and-the-pauper.jpg",
+      "isPopular": true,
+      "price": 140000,
+      "content": "content",
+      "description": "Samuel Langhorne Clemens (November 30, 1835 — April 21, 1910), better known by the pen name Mark Twain, was an American humorist, satirist, writer, and lecturer. Twain is most noted for his novels Adventures of Huckleberry Finn.",
+      "categoryId": 11,
+      "createdAt": 1686288043843,
+      "id": 23
+    }
   ]
 }

@@ -18,7 +18,6 @@ export const CategoryBook = ({ data, topic,itemWidth }) => {
 
   function renderItem({ item, index }) {
     const { imageBook: image, name: title, author } = item;
-    console.log('image',image);
     return (
       <Pressable
         activeOpacity={1}
