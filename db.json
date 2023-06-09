@@ -1,0 +1,109 @@
+{
+  "users": [
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$pkqLKEfUetkwk559mx/EJerfp7DASvfDfue4AMyq3L4.P0FW6rK7C",
+      "lastName": "admin",
+      "firstName": "is",
+      "confirmPassword": "admin@gmail.com",
+      "id": 1,
+      "role": 1
+    },
+    {
+      "email": "phuc@gmail.com",
+      "password": "$2a$10$oVV7ApS1B/euOFc/l4REgeFoUFHiFpgLsLCpACCPiph8cKeGZxyvK",
+      "lastName": "Phúc",
+      "firstName": "Nguyễn",
+      "confirmPassword": "12345678",
+      "id": 2
+    }
+  ],
+  "products": [
+    {
+      "name": "Quần Short Nam Ống Rộng Thoáng Mát",
+      "image": "https://bizweb.dktcdn.net/100/438/408/products/quan-short-nam-yody-sport-sqm6021-den-7.jpg?v=1678326283837",
+      "price": 3999999,
+      "categoryId": 2,
+      "description": "Quần short nam thể thao YODY\n\nChất liệu mềm mại, nhẹ nhàng phù hợp vận động\n\nThiết kế thể thao, khỏe khoắn. Cạp chun cả vòng bản to vô cùng khỏe khoắn\n\nDây rút chất lượng bền đẹp\n\nTúi cạnh sườn có khóa kéo để đồ tiện lợi \n\nYODY - Look good. Feel good.",
+      "id": 1
+    },
+    {
+      "name": "test 1",
+      "image": "https://bizweb.sapocdn.net/thumb/large/100/438/408/products/smm3011-xda-qam4005-den-4.jpg?v=1665997646000",
+      "price": 4,
+      "categoryId": 3,
+      "description": "test",
+      "id": 2
+    },
+    {
+      "name": "T-Shirt Nam Dáng Rộng In Chữ Ngực",
+      "image": "https://bizweb.dktcdn.net/100/438/408/products/tsm6165-den-qsm6029-ghi-3-ao-thun-nam-yody.jpg?v=1684377986657",
+      "price": 200000,
+      "categoryId": 4,
+      "description": "Áo thun nam 100% Cotton\n\nVải Cotton Compact được dệt từ sợi bông USA sạch, góp phần bảo vệ môi trường sống\n\nÁo có khả năng co giãn đàn hồi, thấm hút mồ hôi tốt, thoáng mát, rất thích hợp với thời tiết nóng ẩm việt Nam\n\nKhuyến cáo Giặt sản phẩm trước khi mặc\n\nYODY - Look good. Feel good.",
+      "id": 3
+    },
+    {
+      "name": "Áo Chống Nắng Nữ Đa Năng Anti UV - Versatile",
+      "image": "https://bizweb.dktcdn.net/thumb/large/100/438/408/products/acn6008-hna-8.jpg?v=1678327310000",
+      "price": 200000,
+      "categoryId": 6,
+      "description": "Thành phần 60% Cotton + 40% Polyester\n\nThoải mái, thoáng mát chất liệu mềm mại, thấm hút tốt\n\nCảm giác mát mẻ sẽ giúp cơ thể giảm 2-3 độ khi mặc\n\nChỉ số UPF 50+ làm Tia UV sẽ tốn thời gian gấp 50 lần để gây bỏng da so với da không có gì bảo vệ.\n\nBảo vệ da bạn khỏi cháy nắng, chống lại cả tia UVA và UVB, thích hợp với thời tiết tại Việt Nam\n\nPhiên bản nâng cấp với Khóa kéo YKK tốt nhất thế giới đến từ Nhật\n\nKiểu dệt tinh tế hiện đại, hạn chế xù lông\n\nCo giãn đàn hồi tốt, phù hợp với chuyển động cơ thể\n\nTiện lợi đựng các đồ vật nhỏ vào túi bên trong, 2 túi cạnh bên",
+      "id": 4
+    }
+  ],
+  "category": [
+    {
+      "name": "Tất cả Tâm Lý - Kỹ Năng Sống",
+      "image": "https://docsachhay.net/images/e-book/yeu-phai-trai-tim-sat-da.jpg",
+      "createdAt": 1686279165399,
+      "id": 7
+    },
+    {
+      "name": "Y Học - Sức Khỏe",
+      "image": "https://docsachhay.net/images/e-book/tu-dien-tra-cuu-thao-duoc-cay-thuoc.jpg",
+      "createdAt": 1686279258969,
+      "id": 8
+    },
+    {
+      "name": "Marketing - Bán hàng",
+      "image": "https://docsachhay.net/images/e-book/co-may-ban-hang-toi-uu.jpg",
+      "createdAt": 1686279285264,
+      "id": 9
+    },
+    {
+      "name": "Văn Học Việt Nam",
+      "image": "https://docsachhay.net/images/e-book/ben-troi-pho-la.jpg",
+      "createdAt": 1686279303680,
+      "id": 10
+    },
+    {
+      "name": "Học Ngoại Ngữ",
+      "image": "https://docsachhay.net/images/e-book/to-da-hoc-tieng-anh-nhu-the-nao.jpg",
+      "createdAt": 1686279326713,
+      "id": 11
+    }
+  ],
+  "banner": [
+    {
+      "id": 2,
+      "image": "https://bizweb.sapocdn.net/100/438/408/themes/878697/assets/slider_1.jpg?1664614031289",
+      "active": true
+    },
+    {
+      "id": 3,
+      "image": "https://bizweb.sapocdn.net/100/438/408/themes/878697/assets/slider_2.jpg?1664614031289",
+      "active": true
+    },
+    {
+      "image": "https://bizweb.dktcdn.net/100/438/408/themes/904142/assets/slider_1.jpg?1685522603556",
+      "active": true,
+      "id": 4
+    },
+    {
+      "image": "https://bizweb.dktcdn.net/100/438/408/themes/904142/assets/slider_3.jpg?1685522603556",
+      "active": "true",
+      "id": 5
+    }
+  ]
+}
