@@ -2,13 +2,14 @@ import { useState, memo, useCallback } from 'react';
 import { View, Image, TextInput } from 'react-native';
 import { debounce } from 'lodash';
 
-import { ListBook, tw } from '../../components';
+import { GridBook, tw } from '../../components';
 import { useSearchBook } from '../../hooks';
+import { Text } from '@rneui/themed';
 
 export const Search = memo(() => {
   const [textSearch, setTextSearch] = useState('');
-  const { status, data, error, isFetching } = useSearchBook(textSearch);
-  
+  const { status, data, error, isFetching, isLoading } = useSearchBook(textSearch);
+
   // handle debouce search when user onpress
   const handleSearch = useCallback(
     debounce((text) => {
@@ -16,6 +17,8 @@ export const Search = memo(() => {
     }, 400),
     [],
   );
+
+  console.log('dât', data);
 
   return (
     <View style={tw`flex-1`}>
@@ -42,7 +45,8 @@ export const Search = memo(() => {
           </View>
         </View>
       </View>
-      <ListBook status={status} data={data} error={error} isFetching={isFetching} />
+      {isLoading && <Text>Đang tải</Text>}
+      <GridBook status={status} data={data} error={error} isFetching={isFetching} />
     </View>
   );
 });

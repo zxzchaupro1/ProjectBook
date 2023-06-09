@@ -9,5 +9,5 @@ export const getBookByCategory = (id) => {
 };
 
 export const search = (name) => {
-  return instance.post(`books?q=${name}`);
+  return instance.get(`book?q=${name}`);
 };
