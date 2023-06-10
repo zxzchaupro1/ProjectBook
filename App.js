@@ -16,6 +16,7 @@ import {
   BookDetail,
 } from "./src/screens";
 import { Tabbar } from "./src/components";
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -60,6 +61,7 @@ const App = () => {
                   options={{ headerShown: true }}
                 />
               </Stack.Navigator>
+              <FlashMessage position='top' floating={true} />
             </NavigationContainer>
           </FullScreenLoadingProvider>
         </ThemeProvider>
