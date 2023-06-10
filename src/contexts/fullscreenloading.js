@@ -7,9 +7,7 @@ import {
 import { TouchableOpacity } from "react-native";
 import { Text } from "@rneui/themed";
 
-// import { ActivityIndicator } from "../components/loading-indicator";
 import { tw } from "../components/tw";
-import { CloseCircleSVG } from "../svg";
 
 export const FullScreenLoadingContext = createContext({
   showFullscreenLoading() {
@@ -48,7 +46,7 @@ export const FullScreenLoadingProvider = memo(({ children }) => {
             style={[tw`absolute right-20px`, { top }]}
             onPress={() => setVisible(false)}
           >
-            <CloseCircleSVG />
+            X
           </TouchableOpacity>
           {/* <ActivityIndicator /> */}
         </SafeAreaView>
