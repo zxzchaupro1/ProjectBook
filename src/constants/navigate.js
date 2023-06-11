@@ -4,6 +4,7 @@ export const AppRouter = {
   home: "Trang chủ",
   books: "books",
   bookDetail: "Chi tiết",
+  bookView: "book_view",
   search: "Tìm kiếm",
   category: "Thể loại",
   categoryDetail: "Thể loại chi tiết",

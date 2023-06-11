@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-const baseURL = 'http://192.168.0.115:3000';
+const baseURL = "http://192.168.1.9:3000";
 
 const instance = axios.create({
   baseURL,
   timeout: 5000,
-  headers: { accept: 'application/json' },
+  headers: { accept: "application/json" },
 });
 
 instance.interceptors.request.use(

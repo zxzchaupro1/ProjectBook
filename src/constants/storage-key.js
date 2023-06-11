@@ -1,5 +1,5 @@
 export const StorageKeys = {
   favourite: "book_favourite",
-  selected: "book_selected",
+  readed: "book_readed",
   reading: "book_reading",
 };

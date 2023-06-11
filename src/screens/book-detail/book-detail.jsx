@@ -21,6 +21,14 @@ export const BookDetail = memo(({ route }) => {
     }
   };
 
+  const handleRedirect = () => {
+    navigation.navigate(AppRouter.bookView, {
+      url: book.content,
+      headerTitle: book.name,
+      item: book,
+    });
+  };
+
   const handleSetBookFavourite = async () => {
     try {
       let newFavourite = [...favourties];
@@ -122,6 +130,7 @@ export const BookDetail = memo(({ route }) => {
             size='sm'
             buttonStyle={tw`w-full h-38px`}
             titleStyle={tw`text-white`}
+            onPress={handleRedirect}
           />
         </View>
         <View style={tw`pr-16px`}>

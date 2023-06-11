@@ -1,16 +1,32 @@
 import { memo, useEffect, useState } from "react";
 import { View } from "react-native";
-import { Tab } from "@rneui/themed";
+import { Button } from "@rneui/themed";
 import { StorageKeys } from "../../constants";
 import { GridBook, tw } from "../../components";
 import { Screen } from "react-native-screens";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+
+const tabs = [
+  {
+    label: "Đang đọc",
+    value: 0,
+  },
+  {
+    label: "Sách yêu thích",
+    value: 1,
+  },
+  {
+    label: "Đã đọc",
+    value: 2,
+  },
+];
 
 export const Library = memo(() => {
   const [index, setIndex] = useState(0);
 
   const { getItem } = useAsyncStorage(StorageKeys.favourite);
   const { getItem: getBookReading } = useAsyncStorage(StorageKeys.reading);
+  const { getItem: getBookReaded } = useAsyncStorage(StorageKeys.readed);
 
   const [books, setBooks] = useState([]);
 
@@ -21,6 +37,15 @@ export const Library = memo(() => {
           const books_favourite = await getItem();
           if (books_favourite) {
             const parse = JSON.parse(books_favourite);
+            setBooks(parse);
+            return;
+          }
+          setBooks([]);
+          break;
+        case StorageKeys.readed:
+          const books_readed = await getBookReaded();
+          if (books_readed) {
+            const parse = JSON.parse(books_readed);
             setBooks(parse);
             return;
           }
@@ -50,6 +75,10 @@ export const Library = memo(() => {
         await getItemsBook(StorageKeys.favourite);
         break;
 
+      case 2:
+        await getItemsBook(StorageKeys.readed);
+        break;
+
       default:
         await getItemsBook();
         break;
@@ -57,24 +86,45 @@ export const Library = memo(() => {
   };
 
   useEffect(() => {
-    getItemsBook();
+    console.log(1111);
+    (async () => await getItemsBook())();
   }, []);
 
   return (
     <Screen style={tw`flex-1 bg-white`}>
-      <View style={tw`rounded-2xl`}>
-        <Tab
-          value={index}
-          onChange={handleChangeTab}
-          dense
-          variant='primary'
-          titleStyle={tw`text-14px font-bold`}
-          indicatorStyle={tw`bg-white`}
-        >
-          <Tab.Item>Đang đọc</Tab.Item>
-          <Tab.Item>Yêu thích</Tab.Item>
-        </Tab>
+      <View
+        style={tw`flex-row items-center w-full bg-white p-8px border-t border-grayscale-border`}
+      >
+        {tabs.map((tab) => (
+          <Button
+            title={tab.label}
+            size='sm'
+            containerStyle={tw`mr-12px`}
+            buttonStyle={tw`h-38px px-24px ${
+              index === tab.value
+                ? ""
+                : "bg-white border border-grayscale-border"
+            }`}
+            titleStyle={tw`${
+              index === tab.value ? "text-white" : "text-grayscale-black"
+            }`}
+            onPress={() => handleChangeTab(tab.value)}
+            key={tab.value}
+          />
+        ))}
       </View>
+      {/* <Tab
+        value={index}
+        onChange={handleChangeTab}
+        dense
+        variant='primary'
+        titleStyle={tw`text-14px font-bold`}
+        indicatorStyle={tw`bg-white`}
+      >
+        <Tab.Item>Đang đọc</Tab.Item>
+        <Tab.Item>Yêu thích</Tab.Item>
+      </Tab> */}
+
       <GridBook data={books} />
     </Screen>
   );
