@@ -1,10 +1,11 @@
-import { memo, useEffect, useState } from "react";
-import { ScrollView, View } from "react-native";
+import React, { memo, useEffect, useState } from "react";
+import { View } from "react-native";
 import { Button } from "@rneui/themed";
 import { StorageKeys } from "../../constants";
 import { GridBook, tw } from "../../components";
 import { Screen } from "react-native-screens";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 const tabs = [
   {
@@ -30,10 +31,10 @@ export const Library = memo(() => {
 
   const [books, setBooks] = useState([]);
 
-  const getItemsBook = async (key = StorageKeys.reading) => {
+  const getItemsBook = async (key = 0) => {
     try {
       switch (key) {
-        case StorageKeys.favourite:
+        case 1:
           const books_favourite = await getItem();
           if (books_favourite) {
             const parse = JSON.parse(books_favourite);
@@ -42,7 +43,7 @@ export const Library = memo(() => {
           }
           setBooks([]);
           break;
-        case StorageKeys.readed:
+        case 2:
           const books_readed = await getBookReaded();
           if (books_readed) {
             const parse = JSON.parse(books_readed);
@@ -68,27 +69,17 @@ export const Library = memo(() => {
   };
 
   const handleChangeTab = async (tab) => {
-    if (tab === index) return;
     setIndex(tab);
-    switch (tab) {
-      case 1:
-        await getItemsBook(StorageKeys.favourite);
-        break;
-
-      case 2:
-        await getItemsBook(StorageKeys.readed);
-        break;
-
-      default:
-        await getItemsBook();
-        break;
-    }
+    await getItemsBook(tab);
   };
 
-  useEffect(() => {
-    (async () => await getItemsBook())();
-  }, []);
-
+  useFocusEffect(
+    React.useCallback(() => {
+      (async () => {
+        await getItemsBook(index);
+      })();
+    }, []),
+  );
   return (
     <Screen style={tw`flex-1 bg-white`}>
       <View
