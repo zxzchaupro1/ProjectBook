@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AppRouter } from "../../constants";
 
 export const GridBook = memo(
-  ({ status, error, isFetching, data, isCategory }) => {
+  ({ status, error, isFetching, data, isCategory, ...props }) => {
     const navigation = useNavigation();
 
     function renderItem({ item, index }) {
@@ -58,6 +58,7 @@ export const GridBook = memo(
           ListFooterComponent={
             status === "loading" ? <ActivityIndicator /> : null
           }
+          {...props}
         />
       </View>
     );

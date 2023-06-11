@@ -7,6 +7,17 @@ import { Text } from "@rneui/themed";
 import { Screen } from "react-native-screens";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+const content = [
+  {
+    title: "Sách mới",
+    data: "bookNew",
+  },
+  {
+    title: "Sách phổ biến",
+    data: "booksPopular",
+  },
+];
+
 export const Home = memo(() => {
   const { data, isFetching, isLoading, isError, status, error } =
     useQueryBooks();
@@ -40,8 +51,21 @@ export const Home = memo(() => {
           </View>
         ) : null}
         {isError ? <Text>{error.message}</Text> : null}
-        <View>
-          <Text style={tw`px-12px pt-16px font-bold text-18px`}>Sách mới</Text>
+        {content.map((item, idx) => (
+          <View key={idx}>
+            <Text style={tw`px-12px pt-16px font-bold text-18px`}>
+              {item.title}
+            </Text>
+            <GridBook
+              status={status}
+              data={item.data === "bookNew" ? bookNew : booksPopular}
+              error={error}
+              isFetching={isFetching}
+              scrollEnabled={false}
+            />
+          </View>
+        ))}
+        {/* <Text style={tw`px-12px pt-16px font-bold text-18px`}>Sách mới</Text>
           <GridBook
             status={status}
             data={bookNew}
@@ -57,8 +81,7 @@ export const Home = memo(() => {
             data={booksPopular}
             error={error}
             isFetching={isFetching}
-          />
-        </View>
+          /> */}
       </ScrollView>
     </SafeAreaView>
   );
