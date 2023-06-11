@@ -1,5 +1,5 @@
 import { memo, useEffect, useState } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Button } from "@rneui/themed";
 import { StorageKeys } from "../../constants";
 import { GridBook, tw } from "../../components";
@@ -86,21 +86,20 @@ export const Library = memo(() => {
   };
 
   useEffect(() => {
-    console.log(1111);
     (async () => await getItemsBook())();
   }, []);
 
   return (
     <Screen style={tw`flex-1 bg-white`}>
       <View
-        style={tw`flex-row items-center w-full bg-white p-8px border-t border-grayscale-border`}
+        style={tw`flex-row items-center bg-white p-8px border-t border-grayscale-border`}
       >
         {tabs.map((tab) => (
           <Button
             title={tab.label}
             size='sm'
             containerStyle={tw`mr-12px`}
-            buttonStyle={tw`h-38px px-24px ${
+            buttonStyle={tw`h-32px px-12px rounded ${
               index === tab.value
                 ? ""
                 : "bg-white border border-grayscale-border"
@@ -113,18 +112,6 @@ export const Library = memo(() => {
           />
         ))}
       </View>
-      {/* <Tab
-        value={index}
-        onChange={handleChangeTab}
-        dense
-        variant='primary'
-        titleStyle={tw`text-14px font-bold`}
-        indicatorStyle={tw`bg-white`}
-      >
-        <Tab.Item>Đang đọc</Tab.Item>
-        <Tab.Item>Yêu thích</Tab.Item>
-      </Tab> */}
-
       <GridBook data={books} />
     </Screen>
   );

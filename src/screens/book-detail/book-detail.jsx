@@ -158,7 +158,7 @@ export const BookDetail = memo(({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#191970",
+    backgroundColor: "#2089dc",
   },
   containerBackground: {
     height: "100%",
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 200,
-    backgroundColor: "#191970",
+    backgroundColor: "#2089dc",
   },
   ImageBackground: {
     flex: 1,
