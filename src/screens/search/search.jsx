@@ -4,7 +4,6 @@ import { debounce } from "lodash";
 
 import { GridBook, tw } from "../../components";
 import { useSearchBook } from "../../hooks";
-import { Text } from "@rneui/themed";
 
 export const Search = memo(() => {
   const [textSearch, setTextSearch] = useState("");
@@ -18,8 +17,6 @@ export const Search = memo(() => {
     }, 400),
     [],
   );
-
-  console.log("dât", data);
 
   return (
     <View style={tw`flex-1`}>
