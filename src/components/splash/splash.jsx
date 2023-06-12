@@ -1,14 +1,20 @@
-import { useNavigation } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { AppRouter } from "../../constants";
 
 export function Splash() {
-  const navigation =  useNavigation()
-  useEffect(() => {setTimeout(() => {
-    navigation.navigate("Trang chủ");
-  }, 1000);},[])
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate(AppRouter.home);
+      navigation.navigate("bottom-tab", {
+        screen: AppRouter.home,
+      });
+    }, 1000);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Image
