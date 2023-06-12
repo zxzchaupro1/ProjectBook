@@ -13,8 +13,9 @@ import {
   BookView,
   Login,
 } from "./src/screens";
-import { Tabbar } from "./src/components";
+import { Tabbar,Splash } from "./src/components";
 import FlashMessage from "react-native-flash-message";
+
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -27,6 +28,11 @@ const App = () => {
           <FullScreenLoadingProvider>
             <NavigationContainer>
               <Stack.Navigator>
+              <Stack.Screen
+                  name={AppRouter.splash}
+                  component={Splash}
+                  options={{ headerShown: false }}
+                />
                 <Stack.Screen
                   name='bottom-tab'
                   component={Tabbar}

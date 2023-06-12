@@ -10,4 +10,5 @@ export const AppRouter = {
   categoryDetail: "Thể loại chi tiết",
   library: "Thư viện",
   setting: "Cài đặt",
+  splash: "Start",
 };
