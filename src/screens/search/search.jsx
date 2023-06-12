@@ -1,14 +1,14 @@
-import { useState, memo, useCallback } from 'react';
-import { View, Image, TextInput } from 'react-native';
-import { debounce } from 'lodash';
+import { useState, memo, useCallback } from "react";
+import { View, Image, TextInput, ActivityIndicator } from "react-native";
+import { debounce } from "lodash";
 
-import { GridBook, tw } from '../../components';
-import { useSearchBook } from '../../hooks';
-import { Text } from '@rneui/themed';
+import { GridBook, tw } from "../../components";
+import { useSearchBook } from "../../hooks";
 
 export const Search = memo(() => {
-  const [textSearch, setTextSearch] = useState('');
-  const { status, data, error, isFetching, isLoading } = useSearchBook(textSearch);
+  const [textSearch, setTextSearch] = useState("");
+  const { status, data, error, isFetching, isLoading } =
+    useSearchBook(textSearch);
 
   // handle debouce search when user onpress
   const handleSearch = useCallback(
@@ -18,23 +18,24 @@ export const Search = memo(() => {
     [],
   );
 
-  console.log('dât', data);
-
   return (
     <View style={tw`flex-1`}>
       <View style={tw`m-16px`}>
         <View
           style={{
-            backgroundColor: '#ffffff',
-            width: '100%',
+            backgroundColor: "#ffffff",
+            width: "100%",
             height: 40,
-            alignSelf: 'center',
+            alignSelf: "center",
             borderRadius: 10,
-            flexDirection: 'row',
-            alignItems: 'center',
+            flexDirection: "row",
+            alignItems: "center",
           }}
         >
-          <Image style={{ width: 20, height: 20, marginLeft: 16 }} source={require('../..//asset/search.png')} />
+          <Image
+            style={{ width: 20, height: 20, marginLeft: 16 }}
+            source={require("../..//asset/search.png")}
+          />
           <View style={tw`pl-12px`}>
             <TextInput
               style={tw`w-full`}
@@ -45,8 +46,13 @@ export const Search = memo(() => {
           </View>
         </View>
       </View>
-      {isLoading && <Text>Đang tải</Text>}
-      <GridBook status={status} data={data} error={error} isFetching={isFetching} />
+      {isLoading && <ActivityIndicator />}
+      <GridBook
+        status={status}
+        data={data}
+        error={error}
+        isFetching={isFetching}
+      />
     </View>
   );
 });

@@ -1,2 +1,1 @@
-export * from './rneui';
-export * from './format';
+export * from "./format";

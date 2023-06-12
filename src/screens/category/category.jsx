@@ -1,14 +1,20 @@
-import { memo } from 'react';
-import { ScrollView } from 'react-native';
-import { useQueryCategories } from '../../hooks';
-import { tw } from '../../components';
-import { GridBook } from '../../components/grid-book';
+import { memo } from "react";
+import { useQueryCategories } from "../../hooks";
+import { tw } from "../../components";
+import { GridBook } from "../../components/grid-book";
+import { Screen } from "react-native-screens";
 
 export const Category = memo(() => {
-  const { data, isFetching, error,status } = useQueryCategories();
+  const { data, isFetching, error, status } = useQueryCategories();
   return (
-    <ScrollView style={tw`bg-white`}>
-      <GridBook status={status} data={data} error={error} isFetching={isFetching} isCategory={true} />
-    </ScrollView>
+    <Screen style={tw`bg-white flex-1`}>
+      <GridBook
+        status={status}
+        data={data}
+        error={error}
+        isFetching={isFetching}
+        isCategory={true}
+      />
+    </Screen>
   );
 });

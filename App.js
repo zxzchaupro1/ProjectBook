@@ -1,21 +1,20 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@rneui/themed";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { rneui } from "./src/utils";
 import { AppRouter } from "./src/constants";
 import { FullScreenLoadingProvider } from "./src/contexts";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import {
-  Book,
-  Login,
   Singup,
-  Search,
   CategoryDetail,
   BookDetail,
+  BookView,
+  Login,
 } from "./src/screens";
 import { Tabbar } from "./src/components";
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator();
 const queryClient = new QueryClient();
@@ -24,7 +23,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient} contextSharing={true}>
       <SafeAreaProvider>
-        <ThemeProvider theme={rneui}>
+        <ThemeProvider>
           <FullScreenLoadingProvider>
             <NavigationContainer>
               <Stack.Navigator>
@@ -50,9 +49,12 @@ const App = () => {
                   options={{ headerShown: true }}
                 />
                 <Stack.Screen
-                  name={AppRouter.search}
-                  component={Search}
-                  options={{ headerShown: false }}
+                  name={AppRouter.bookView}
+                  component={BookView}
+                  options={({ route }) => ({
+                    headerShown: true,
+                    title: route.params.headerTitle,
+                  })}
                 />
                 <Stack.Screen
                   name={AppRouter.categoryDetail}
@@ -60,6 +62,7 @@ const App = () => {
                   options={{ headerShown: true }}
                 />
               </Stack.Navigator>
+              <FlashMessage position='top' floating={true} />
             </NavigationContainer>
           </FullScreenLoadingProvider>
         </ThemeProvider>

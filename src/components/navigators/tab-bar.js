@@ -63,7 +63,7 @@ export const Tabbar = () => {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         name={AppRouter.setting}
         component={Setting}
         options={{
@@ -75,7 +75,7 @@ export const Tabbar = () => {
             />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

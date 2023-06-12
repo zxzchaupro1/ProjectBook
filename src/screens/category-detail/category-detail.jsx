@@ -1,13 +1,15 @@
-import { memo, useEffect } from 'react';
-import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { tw } from '../../components';
-import { GridBook } from '../../components/grid-book';
-import { useQueryBookByCategory } from '../../hooks';
+import { memo, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { tw } from "../../components";
+import { GridBook } from "../../components/grid-book";
+import { useQueryBookByCategory } from "../../hooks";
+import { Screen } from "react-native-screens";
 
 export const CategoryDetail = memo(({ route }) => {
   const navigation = useNavigation();
-  const { data, isFetching, error, status } = useQueryBookByCategory(route?.params.item.id);
+  const { data, isFetching, error, status } = useQueryBookByCategory(
+    route?.params.item.id,
+  );
 
   useEffect(() => {
     if (route?.params.item.name) {
@@ -15,8 +17,13 @@ export const CategoryDetail = memo(({ route }) => {
     }
   }, [route]);
   return (
-    <ScrollView style={tw`bg-white`}>
-      <GridBook status={status} data={data} error={error} isFetching={isFetching} />
-    </ScrollView>
+    <Screen style={tw`bg-white flex-1`}>
+      <GridBook
+        status={status}
+        data={data}
+        error={error}
+        isFetching={isFetching}
+      />
+    </Screen>
   );
 });

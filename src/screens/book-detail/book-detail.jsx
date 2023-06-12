@@ -1,19 +1,72 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { Button, Divider, Icon, Text } from "@rneui/themed";
-import {
-  ScrollView,
-  View,
-  Image,
-  StyleSheet,
-  ImageBackground,
-} from "react-native";
+import { ScrollView, View, Image, StyleSheet } from "react-native";
 import { tw } from "../../components";
-import { AppRouter } from "../../constants";
+import { AppRouter, StorageKeys } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
+import { useAsyncStorage } from "@react-native-async-storage/async-storage";
+import { showMessage } from "react-native-flash-message";
 
 export const BookDetail = memo(({ route }) => {
   const navigation = useNavigation();
+  const [favourties, setFavourties] = useState([]);
+  const { getItem, setItem } = useAsyncStorage(StorageKeys.favourite);
   const book = useMemo(() => route?.params?.item, [route]);
+
+  const readItemFromStorage = async () => {
+    const item = await getItem();
+    if (item) {
+      const parse = JSON.parse(item);
+      setFavourties(parse);
+    }
+  };
+
+  const handleRedirect = () => {
+    navigation.navigate(AppRouter.bookView, {
+      url: book.content,
+      headerTitle: book.name,
+      item: book,
+    });
+  };
+
+  const handleSetBookFavourite = async () => {
+    try {
+      let newFavourite = [...favourties];
+      const isExist = newFavourite.find((items) => items.id === book.id);
+      if (!isExist) {
+        newFavourite = [...newFavourite, book];
+      } else {
+        newFavourite = newFavourite.filter(
+          (favourtie) => favourtie.id !== book.id,
+        );
+      }
+      await setItem(JSON.stringify(newFavourite), async (error) => {
+        if (error) {
+          showMessage({
+            message: "Thêm sách yêu thích thất bại",
+            type: "danger",
+          });
+          return;
+        }
+        if (!isExist) {
+          showMessage({
+            message: "Thêm sách yêu thích thành công",
+            type: "success",
+          });
+        }
+
+        await readItemFromStorage();
+      });
+    } catch (e) {
+      // save error
+      console.log("error-save-book-favourite", e);
+    }
+  };
+
+  useEffect(() => {
+    readItemFromStorage();
+  }, []);
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -75,16 +128,26 @@ export const BookDetail = memo(({ route }) => {
           <Button
             title={"Đọc sách"}
             size='sm'
-            buttonStyle={tw`w-full h-38px p-auto`}
+            buttonStyle={tw`w-full h-38px`}
             titleStyle={tw`text-white`}
+            onPress={handleRedirect}
           />
         </View>
         <View style={tw`pr-16px`}>
           <Button
-            title={<Icon name='heart' type='font-awesome' color='pink' />}
+            title={
+              <Icon
+                name='heart'
+                type='font-awesome'
+                color={
+                  !!favourties.find((p) => p.id === book.id) ? "red" : "pink"
+                }
+              />
+            }
             size='sm'
-            buttonStyle={tw`w-6/12 h-38px p-auto bg-white border border-grayscale-border`}
+            buttonStyle={tw`w-6/12 h-38px  bg-white border border-grayscale-border`}
             titleStyle={tw`text-white`}
+            onPress={handleSetBookFavourite}
           />
         </View>
       </View>
@@ -95,7 +158,7 @@ export const BookDetail = memo(({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#191970",
+    backgroundColor: "#2089dc",
   },
   containerBackground: {
     height: "100%",
@@ -120,7 +183,7 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 200,
-    backgroundColor: "#191970",
+    backgroundColor: "#2089dc",
   },
   ImageBackground: {
     flex: 1,
