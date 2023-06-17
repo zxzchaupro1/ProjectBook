@@ -23,6 +23,13 @@
       "confirmPassword": "12345678",
       "id": 4,
       "isMember": false
+    },
+    {
+      "email": "nam@gmail.com",
+      "password": "$2a$10$ycazOZTtcEccT8bn7FKRcOnRz4sM8IQMu9SgXGVOt9uq/eNd9ClDe",
+      "fullname": "Ngô văn nam",
+      "isMember": false,
+      "id": 5
     }
   ],
   "products": [

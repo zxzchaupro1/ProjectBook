@@ -27,7 +27,7 @@ const App = () => {
           <FullScreenLoadingProvider>
             <AuthProvider>
               <AppNavigator />
-              <FlashMessage position='bottom' floating={true} />
+              <FlashMessage position='top' floating={true} />
             </AuthProvider>
           </FullScreenLoadingProvider>
         </ThemeProvider>
