@@ -26,11 +26,11 @@ export const Login = memo(() => {
         password: zod
           .string({ required_error: validationMessage.required })
           .nonempty(validationMessage.required)
-          .min(6, "Mật khẩu tối thiểu 6 ký tự"),
-        // .regex(
-        //   REGEXP.at_least_one_number_and_one_letter,
-        //   "Mật khẩu bao gồm chữ cái và số",
-        // ),
+          .min(6, "Mật khẩu tối thiểu 6 ký tự")
+          .regex(
+            REGEXP.at_least_one_number_and_one_letter,
+            "Mật khẩu bao gồm chữ cái và số",
+          ),
       }),
     [],
   );
@@ -53,6 +53,11 @@ export const Login = memo(() => {
     loginApi(values)
       .then((res) => {
         console.log("res", res.data);
+        const isMember = res.data.isMember;
+        if (!isMember) {
+          navigation.navigate(AppRouter.member, { user: { ...res.data.user } });
+          return;
+        }
         login({ ...res.data.user });
       })
       .catch((err) => {
@@ -65,10 +70,6 @@ export const Login = memo(() => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    console.log("eader");
-    navigation.navigate(AppRouter.member);
-  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.containerBackground}>

@@ -1,35 +1,12 @@
 {
   "users": [
     {
-      "email": "phuc@gmail.com",
-      "password": "$2a$10$oVV7ApS1B/euOFc/l4REgeFoUFHiFpgLsLCpACCPiph8cKeGZxyvK",
-      "fullname": "Nguyễn",
-      "confirmPassword": "12345678",
-      "id": 2,
-      "isMember": false
-    },
-    {
-      "email": "a@gmail.com",
-      "password": "$2a$10$oVV7ApS1B/euOFc/l4REgeFoUFHiFpgLsLCpACCPiph8cKeGZxyvK",
-      "fullname": "a@",
-      "confirmPassword": "12345678",
-      "id": 3,
-      "isMember": false
-    },
-    {
-      "email": "client@gmail.com",
-      "password": "$2a$10$oVV7ApS1B/euOFc/l4REgeFoUFHiFpgLsLCpACCPiph8cKeGZxyvK",
-      "fullname": "client",
-      "confirmPassword": "12345678",
-      "id": 4,
-      "isMember": false
-    },
-    {
-      "email": "nam@gmail.com",
-      "password": "$2a$10$ycazOZTtcEccT8bn7FKRcOnRz4sM8IQMu9SgXGVOt9uq/eNd9ClDe",
-      "fullname": "Ngô văn nam",
-      "isMember": false,
-      "id": 5
+      "email": "nvnam042@gmail.com",
+      "password": "$2a$10$VuvbtCxESXejTPJXCKUKqeDcAoI4nhlZ9rSf0.pZ8tnPzFXl3NGeO",
+      "fullname": "Ngô Văn Nam",
+      "isMember": true,
+      "confirmPassword": "12345a",
+      "id": 1
     }
   ],
   "products": [

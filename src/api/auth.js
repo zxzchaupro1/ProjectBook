@@ -8,5 +8,5 @@ export const registerApi = (data) => {
   return instance.post("/register", data);
 };
 export const updateProfileApi = (id, data) => {
-  return instance.pacth(`users/${id}`, data);
+  return instance.patch(`users/${id}`, data);
 };

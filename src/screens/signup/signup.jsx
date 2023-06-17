@@ -45,7 +45,11 @@ export const Singup = memo(({ navigation }) => {
 
   const handleRegister = (values) => {
     setLoading(true);
-    registerApi({ ...values, isMember: false })
+    registerApi({
+      ...values,
+      isMember: false,
+      confirmPassword: values.password,
+    })
       .then((res) => {
         showMessage({
           type: "success",

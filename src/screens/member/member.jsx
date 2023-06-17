@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import { AppRouter } from "../../constants";
 
 export const Member = memo(({ route }) => {
+  console.log("route", route);
   const navigation = useNavigation();
   return (
     <Screen style={styles.container}>
@@ -108,12 +109,10 @@ export const Member = memo(({ route }) => {
       <View style={tw`flex-1 w-full px-60px mt-8px`}>
         <Button
           title='Thanh toán'
-          onPress={
-            () =>
-              navigation.navigate(AppRouter.payment, {
-                user: route?.params.user,
-              })
-            // navigation.navigate(AppRouter.payment)
+          onPress={() =>
+            navigation.navigate(AppRouter.payment, {
+              user: route?.params.user,
+            })
           }
         />
       </View>

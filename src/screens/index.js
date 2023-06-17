@@ -9,3 +9,5 @@ export * from "./category-detail";
 export * from "./book-detail";
 export * from "./book-view";
 export * from "./library";
+export * from "./member";
+export * from "./payment";
