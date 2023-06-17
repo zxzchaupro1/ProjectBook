@@ -11,4 +11,8 @@ export const AppRouter = {
   library: "Thư viện",
   setting: "Cài đặt",
   splash: "Start",
+  member: "member",
+  payment: "payment",
+  updateProfile: "Cập nhật tài khoản",
+  changePassword: "Đổi mật khẩu",
 };

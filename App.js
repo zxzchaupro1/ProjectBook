@@ -1,23 +1,22 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@rneui/themed";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { AppRouter } from "./src/constants";
-import { FullScreenLoadingProvider } from "./src/contexts";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AuthProvider, FullScreenLoadingProvider } from "./src/contexts";
 
-import {
-  Singup,
-  CategoryDetail,
-  BookDetail,
-  BookView,
-  Login,
-} from "./src/screens";
-import { Tabbar,Splash } from "./src/components";
 import FlashMessage from "react-native-flash-message";
+import { AppNavigator } from "./src/navigator";
 
+import { LogBox } from "react-native";
 
-const Stack = createNativeStackNavigator();
+const IGNORED_LOGS = [
+  "Non-serializable values were found in the navigation state",
+  "Require cycle:",
+  "source.uri should not be an empty string",
+  "You are not currently signed in to Expo on your development machine",
+];
+
+LogBox.ignoreLogs(IGNORED_LOGS);
+
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -26,50 +25,10 @@ const App = () => {
       <SafeAreaProvider>
         <ThemeProvider>
           <FullScreenLoadingProvider>
-            <NavigationContainer>
-              <Stack.Navigator>
-              <Stack.Screen
-                  name={AppRouter.splash}
-                  component={Splash}
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                  name='bottom-tab'
-                  component={Tabbar}
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                  name={AppRouter.login}
-                  component={Login}
-                  options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                  name={AppRouter.signup}
-                  component={Singup}
-                  options={{ headerShown: false }}
-                />
-                {/* screen  */}
-                <Stack.Screen
-                  name={AppRouter.bookDetail}
-                  component={BookDetail}
-                  options={{ headerShown: true }}
-                />
-                <Stack.Screen
-                  name={AppRouter.bookView}
-                  component={BookView}
-                  options={({ route }) => ({
-                    headerShown: true,
-                    title: route.params.headerTitle,
-                  })}
-                />
-                <Stack.Screen
-                  name={AppRouter.categoryDetail}
-                  component={CategoryDetail}
-                  options={{ headerShown: true }}
-                />
-              </Stack.Navigator>
-              <FlashMessage position='top' floating={true} />
-            </NavigationContainer>
+            <AuthProvider>
+              <AppNavigator />
+              <FlashMessage position='bottom' floating={true} />
+            </AuthProvider>
           </FullScreenLoadingProvider>
         </ThemeProvider>
       </SafeAreaProvider>
