@@ -9,6 +9,7 @@ import { TextInput, tw } from "../../components";
 import { Button } from "@rneui/themed";
 import { registerApi } from "../../api/auth";
 import { showMessage } from "react-native-flash-message";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const Singup = memo(({ navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -68,16 +69,18 @@ export const Singup = memo(({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <View style={styles.containerBackground}>
-        <Image
-          source={require("../../asset/avatar.png")}
-          style={{
-            width: 150,
-            height: 150,
-            marginTop: 100,
-          }}
-        />
-        <Text style={{ color: "#fff", marginTop: -5 }}>
+      <KeyboardAwareScrollView style={styles.containerBackground}>
+        <View style={styles.center}>
+          <Image
+            source={require("../../asset/avatar.png")}
+            style={{
+              width: 150,
+              height: 150,
+              marginTop: 80,
+            }}
+          />
+        </View>
+        <Text style={{ color: "#fff", marginTop: -5, textAlign: "center" }}>
           Chào mừng bạn đến với ReadBook
         </Text>
         <Text
@@ -86,6 +89,7 @@ export const Singup = memo(({ navigation }) => {
             fontSize: 30,
             color: "#fff",
             marginTop: 24,
+            textAlign: "center",
           }}
         >
           Đăng ký
@@ -169,28 +173,27 @@ export const Singup = memo(({ navigation }) => {
             />
           )}
         />
-
-        <View style={tw`flex-1 w-full px-60px`}>
+        <View style={tw`flex-1 w-full px-60px mt-24px`}>
           <Button
             title='Đăng ký'
             onPress={handleSubmit(handleRegister)}
             loading={loading}
           />
         </View>
-      </View>
-      <TouchableOpacity style={{ marginTop: 40 }}>
+      </KeyboardAwareScrollView>
+      <View style={tw`py-36px`}>
         <Text>Bạn là hội viên của Readbook</Text>
-      </TouchableOpacity>
-      <Text
-        style={{
-          color: "#191970",
-          alignSelf: "center",
-          fontSize: 16,
-        }}
-        onPress={() => navigation.navigate(AppRouter.login)}
-      >
-        Đăng nhập
-      </Text>
+        <Text
+          style={{
+            color: "#191970",
+            alignSelf: "center",
+            fontSize: 16,
+          }}
+          onPress={() => navigation.navigate(AppRouter.login)}
+        >
+          Đăng nhập
+        </Text>
+      </View>
       <StatusBar style='auto' />
     </View>
   );
@@ -203,11 +206,12 @@ const styles = StyleSheet.create({
   },
   containerBackground: {
     width: "100%",
-    height: "80%",
-    left: 0,
+    height: "75%",
     backgroundColor: "#191970",
     borderBottomLeftRadius: 70,
     borderBottomRightRadius: 70,
+  },
+  center: {
     alignItems: "center",
   },
 });
