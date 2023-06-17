@@ -1,4 +1,4 @@
-import { memo, useMemo, useState } from "react";
+import { memo, useMemo, useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,8 +10,10 @@ import { Button } from "@rneui/themed";
 import { loginApi } from "../../api/auth";
 import { useAuth } from "../../contexts";
 import { showMessage } from "react-native-flash-message";
+import { useNavigation } from "@react-navigation/native";
 
-export const Login = memo(({ navigation }) => {
+export const Login = memo(() => {
+  const navigation = useNavigation();
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const validationSchema = useMemo(
@@ -61,8 +63,12 @@ export const Login = memo(({ navigation }) => {
         });
       });
     setLoading(false);
-    console.log("values", values);
   };
+
+  useEffect(() => {
+    console.log("eader");
+    navigation.navigate(AppRouter.member);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.containerBackground}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { StatusBar } from "expo-status-bar";
 
 import { useAuth } from "../contexts";
@@ -7,7 +7,7 @@ import { Image } from "@rneui/themed";
 import { RootNavigator } from "./root-navigator";
 import { tw } from "../components";
 
-export const AppNavigator = () => {
+export const AppNavigator = memo(() => {
   const [appIsReady, setAppIsReady] = useState(false);
 
   const { isLoggedIn } = useAuth();
@@ -38,7 +38,7 @@ export const AppNavigator = () => {
       <RootNavigator isLoggedIn={isLoggedIn} />
     </>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
