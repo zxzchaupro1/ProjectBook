@@ -1,6 +1,13 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
-import { Category, Home, Library, Search, Setting } from "../../screens";
+import {
+  Account,
+  Category,
+  Home,
+  Library,
+  Search,
+  Setting,
+} from "../../screens";
 import { AppRouter } from "../../constants";
 
 const Tab = createBottomTabNavigator();
@@ -63,9 +70,9 @@ export const Tabbar = () => {
         }}
       />
 
-      {/* <Tab.Screen
-        name={AppRouter.setting}
-        component={Setting}
+      <Tab.Screen
+        name={AppRouter.account}
+        component={Account}
         options={{
           headerShown: true,
           tabBarIcon: ({ color, size }) => (
@@ -75,7 +82,7 @@ export const Tabbar = () => {
             />
           ),
         }}
-      /> */}
+      />
     </Tab.Navigator>
   );
 };

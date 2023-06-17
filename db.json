@@ -7,6 +7,14 @@
       "isMember": true,
       "confirmPassword": "12345a",
       "id": 1
+    },
+    {
+      "email": "client@gmail.com",
+      "password": "$2a$10$MrcCMtKK10sYXCKmJ030nut4Bsyy4.A0P5ZlEfDzxdO///afD8tq2",
+      "fullname": "Người dùng 1 ",
+      "isMember": true,
+      "confirmPassword": "12345a",
+      "id": 2
     }
   ],
   "products": [

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { StorageKeys } from "../constants";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 
@@ -20,33 +20,45 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const { getItem, setItem, removeItem } = useAsyncStorage(
-    StorageKeys.favourite,
+    StorageKeys.user_info,
   );
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isMember, setIsMember] = useState(false);
 
   const [user, setUser] = useState();
 
   const login = async (data) => {
     await setItem(JSON.stringify(data));
     setIsLoggedIn(true);
+    setUser(data);
   };
 
   const logout = async () => {
     await removeItem();
     setIsLoggedIn(false);
+    setUser(undefined);
   };
 
   const saveUserInfo = (data) => {
     setUser(data);
   };
 
+  useEffect(() => {
+    (async () => {
+      const res = await getItem();
+      const user_info = JSON.parse(res);
+      if (user_info.fullname) {
+        console.log("user_info", user_info);
+        setUser(user_info);
+        setIsLoggedIn(true);
+      }
+    })();
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
         isLoggedIn,
-        isMember,
         login,
         logout,
         user,

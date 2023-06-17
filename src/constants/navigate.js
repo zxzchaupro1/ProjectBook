@@ -13,6 +13,7 @@ export const AppRouter = {
   splash: "Start",
   member: "member",
   payment: "payment",
+  account: "Tài khoản",
   updateProfile: "Cập nhật tài khoản",
   changePassword: "Đổi mật khẩu",
 };

@@ -11,3 +11,4 @@ export * from "./book-view";
 export * from "./library";
 export * from "./member";
 export * from "./payment";
+export * from "./account";

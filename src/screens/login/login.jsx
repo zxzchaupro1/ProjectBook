@@ -52,8 +52,7 @@ export const Login = memo(() => {
     setLoading(true);
     loginApi(values)
       .then((res) => {
-        console.log("res", res.data);
-        const isMember = res.data.isMember;
+        const isMember = res.data.user.isMember;
         if (!isMember) {
           navigation.navigate(AppRouter.member, { user: { ...res.data.user } });
           return;
