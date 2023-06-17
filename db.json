@@ -3,10 +3,14 @@
     {
       "email": "nvnam042@gmail.com",
       "password": "$2a$10$VuvbtCxESXejTPJXCKUKqeDcAoI4nhlZ9rSf0.pZ8tnPzFXl3NGeO",
-      "fullname": "Ngô Văn Nam",
+      "fullname": "Ngô Văn Nam 3",
       "isMember": true,
       "confirmPassword": "12345a",
-      "id": 1
+      "id": 1,
+      "values": {
+        "email": "nvnam042@gmail.com",
+        "fullname": "Ngô Văn Nam 1"
+      }
     },
     {
       "email": "client@gmail.com",

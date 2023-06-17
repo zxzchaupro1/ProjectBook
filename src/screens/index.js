@@ -12,3 +12,4 @@ export * from "./library";
 export * from "./member";
 export * from "./payment";
 export * from "./account";
+export * from "./update-profile";

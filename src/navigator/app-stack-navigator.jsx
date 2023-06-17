@@ -9,6 +9,7 @@ import {
   CategoryDetail,
   Login,
   Singup,
+  UpdateProfile,
 } from "../screens";
 
 const Stack = createNativeStackNavigator();
@@ -38,6 +39,11 @@ export const AppStackNavigator = memo(() => {
       <Stack.Screen
         name={AppRouter.categoryDetail}
         component={CategoryDetail}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name={AppRouter.updateProfile}
+        component={UpdateProfile}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>

@@ -39,10 +39,6 @@ export const AuthProvider = ({ children }) => {
     setUser(undefined);
   };
 
-  const saveUserInfo = (data) => {
-    setUser(data);
-  };
-
   useEffect(() => {
     (async () => {
       const res = await getItem();
@@ -62,7 +58,6 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         user,
-        saveUserInfo,
       }}
     >
       {children}
