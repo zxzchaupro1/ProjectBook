@@ -4,6 +4,7 @@ import { debounce } from "lodash";
 
 import { GridBook, tw } from "../../components";
 import { useSearchBook } from "../../hooks";
+import { Text } from "@rneui/themed";
 
 export const Search = memo(() => {
   const [textSearch, setTextSearch] = useState("");
@@ -47,6 +48,11 @@ export const Search = memo(() => {
         </View>
       </View>
       {isLoading && <ActivityIndicator />}
+      {(error || data.length === 0) && (
+        <Text style={tw`text-center mt-30px`}>
+          Không tìm thấy kết quả phù hợp!
+        </Text>
+      )}
       <GridBook
         status={status}
         data={data}
