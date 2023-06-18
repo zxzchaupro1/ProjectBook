@@ -13,3 +13,4 @@ export * from "./member";
 export * from "./payment";
 export * from "./account";
 export * from "./update-profile";
+export * from "./change-password";

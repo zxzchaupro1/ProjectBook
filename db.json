@@ -2,10 +2,10 @@
   "users": [
     {
       "email": "nvnam042@gmail.com",
-      "password": "$2a$10$VuvbtCxESXejTPJXCKUKqeDcAoI4nhlZ9rSf0.pZ8tnPzFXl3NGeO",
+      "password": "$2a$10$ppg9v5SyA.S41ITl9wGV1uSLtc2BL0FUOT/CaRdelpO3pLw/LZZCq",
       "fullname": "Ngô Văn Nam 3",
       "isMember": true,
-      "confirmPassword": "12345a",
+      "confirmPassword": "123456a",
       "id": 1,
       "values": {
         "email": "nvnam042@gmail.com",
@@ -171,19 +171,34 @@
       "id": 15
     },
     {
-      "name": "Vệ Sinh Yếu Quyết 2",
-      "author": "Hải Thượng Lãn Ông",
-      "image": "https://docsachhay.net/images/e-book/ve-sinh-yeu-quyet.jpg",
+      "name": "Bác Sĩ Tốt Nhất Là Chính Mình",
+      "author": "Hồng Chiêu Quang",
+      "image": "https://docsachhay.net/images/e-book/bac-si-tot-nhat-la-chinh-minh.jpg",
       "isPopular": true,
       "price": 160000,
-      "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-ve-sinh-yeu-quyet.pdf",
+      "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-bac-si-tot-nhat-la-chinh-minh-tap-9-cao-huyet-ap-sat-thu-tham-lang.pdf",
       "description": "Hải Thượng Lãn Ông xuất hiện trong lịch sử y học Việt Nam với tư cách là ông tổ ngành y, là người đi đầu trong việc phát hiện và chữa bệnh thời xưa ở nước ta. Suốt cả cuộc đời mình, ông đều tận tụy với nghề nghiệp, luôn tìm cách đi sâu nghiên cứu lý luận Trung y thông qua những cuốn sách ý học cổ truyền. Để rồi, khi đi đến hết cuộc đời của mình, ông đã để lại cho nhân dân ta không ít những cuốn sách, những tài liệu quý giá về y học. Trong đó cuốn sách “Vệ Sinh Yếu Quyết” là một tác phẩm viết về cách để bảo về bản thân khỏi bệnh tật và có được một đời sống mạnh khỏe.",
       "categoryId": 8,
       "createdAt": 1686287898362,
-      "view": 836,
-      "page": 362,
-      "heart": 366,
+      "view": 902,
+      "page": 5,
+      "heart": 10,
       "id": 16
+    },
+    {
+      "name": "Cảnh Giới Bên Kia Cửa Tử",
+      "author": "Hồng Chiêu Quang",
+      "image": "https://docsachhay.net/images/e-book/canh-gioi-ben-kia-cua-tu.jpg",
+      "isPopular": true,
+      "price": 160000,
+      "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-bac-si-tot-nhat-la-chinh-minh-tap-9-cao-huyet-ap-sat-thu-tham-lang.pdf",
+      "description": "Hải Thượng Lãn Ông xuất hiện trong lịch sử y học Việt Nam với tư cách là ông tổ ngành y, là người đi đầu trong việc phát hiện và chữa bệnh thời xưa ở nước ta. Suốt cả cuộc đời mình, ông đều tận tụy với nghề nghiệp, luôn tìm cách đi sâu nghiên cứu lý luận Trung y thông qua những cuốn sách ý học cổ truyền. Để rồi, khi đi đến hết cuộc đời của mình, ông đã để lại cho nhân dân ta không ít những cuốn sách, những tài liệu quý giá về y học. Trong đó cuốn sách “Vệ Sinh Yếu Quyết” là một tác phẩm viết về cách để bảo về bản thân khỏi bệnh tật và có được một đời sống mạnh khỏe.",
+      "categoryId": 8,
+      "createdAt": 1686287898362,
+      "view": 229,
+      "page": 50,
+      "heart": 12,
+      "id": 30
     },
     {
       "name": "Viết Gì Cũng Đúng",
@@ -201,12 +216,12 @@
       "id": 17
     },
     {
-      "name": "Viết Gì Cũng Đúng 2",
-      "author": "Anthony Weston",
-      "image": "https://docsachhay.net/images/e-book/viet-gi-cung-dung.jpg",
+      "name": "Kết thúc bán hàng đòn quyết định",
+      "author": "Brian Tracy",
+      "image": "https://docsachhay.net/images/e-book/ket-thuc-ban-hang-don-quyet-dinh.jpg",
       "isPopular": true,
-      "price": 50000,
-      "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-viet-gi-cung-dung.pdf",
+      "price": 520000,
+      "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-ket-thuc-ban-hang-don-quyet-dinh.pdf",
       "description": "“Viết Gì Cũng Đúng” của tác giả Anthony Weston giúp người đọc nhận thức toàn diện hơn về biện luận và trình bày lí lẽ xoay quanh một vấn đề nào đó. Khi bạn làm việc, biện luận đóng vai trò quan trọng trong việc nâng cao năng lực và khả năng phân tích năng lực của bạn.",
       "categoryId": 9,
       "createdAt": 1686287938354,
@@ -216,18 +231,18 @@
       "id": 18
     },
     {
-      "name": "Viết Gì Cũng Đúng 3",
-      "author": "Anthony Weston",
-      "image": "https://docsachhay.net/images/e-book/viet-gi-cung-dung.jpg",
+      "name": "Tôi Pr Cho Pr",
+      "author": "Di Li",
+      "image": "https://docsachhay.net/images/e-book/toi-pr-cho-pr.jpg",
       "isPopular": false,
-      "price": 50000,
+      "price": 150000,
       "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-viet-gi-cung-dung.pdf",
       "description": "“Viết Gì Cũng Đúng” của tác giả Anthony Weston giúp người đọc nhận thức toàn diện hơn về biện luận và trình bày lí lẽ xoay quanh một vấn đề nào đó. Khi bạn làm việc, biện luận đóng vai trò quan trọng trong việc nâng cao năng lực và khả năng phân tích năng lực của bạn.",
       "categoryId": 9,
       "createdAt": 1686287943146,
-      "view": 314,
-      "page": 146,
-      "heart": 144,
+      "view": 1459,
+      "page": 13,
+      "heart": 12,
       "id": 19
     },
     {
@@ -246,9 +261,9 @@
       "id": 20
     },
     {
-      "name": "Bên Trời Phố Lạ 2",
+      "name": "Đêm Hội Long Trì",
       "author": "Yến Quỳnh",
-      "image": "https://docsachhay.net/images/e-book/ben-troi-pho-la.jpg",
+      "image": "https://docsachhay.net/images/e-book/dem-hoi-long-tri.jpg",
       "isPopular": false,
       "price": 50000,
       "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-12-phuong-phap-khich-le-nhan-vien-tien-khong-lam-duoc.pdf",
@@ -261,18 +276,18 @@
       "id": 21
     },
     {
-      "name": "Bên Trời Phố Lạ 3",
-      "author": "Yến Quỳnh",
-      "image": "https://docsachhay.net/images/e-book/ben-troi-pho-la.jpg",
+      "name": "Hạnh phúc lối nào",
+      "author": "Hồ Biểu Chánh",
+      "image": "https://docsachhay.net/images/e-book/hanh-phuc-loi-nao.jpg",
       "isPopular": true,
-      "price": 40000,
+      "price": 140000,
       "content": "https://file.nhasachmienphi.com/pdf/nhasachmienphi-12-phuong-phap-khich-le-nhan-vien-tien-khong-lam-duoc.pdf",
       "description": "Hồng Kim làm việc tại một trại trẻ mồ côi SOS gần nhà, một cô gái đã ngoài hai mươi hai mà nhìn trông như mới mười bảy vậy. Cô hồn nhiên, ngây thơ, xinh đẹp lại rất tốt bụng, cô yêu trẻ con vô cùng. Mẹ cô không may mắc phải căn bệnh hiểm nghèo, cha lại không còn, mối lo duy nhất của mẹ là cuộc sống của Hồng Kim sao cho ổn định nhất.",
       "categoryId": 10,
       "createdAt": 1686288001242,
-      "view": 124,
-      "page": 242,
-      "heart": 244,
+      "view": 224,
+      "page": 142,
+      "heart": 44,
       "id": 22
     },
     {

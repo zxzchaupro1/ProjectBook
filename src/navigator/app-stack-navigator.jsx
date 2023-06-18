@@ -7,6 +7,7 @@ import {
   BookDetail,
   BookView,
   CategoryDetail,
+  ChangePassword,
   Login,
   Singup,
   UpdateProfile,
@@ -44,6 +45,11 @@ export const AppStackNavigator = memo(() => {
       <Stack.Screen
         name={AppRouter.updateProfile}
         component={UpdateProfile}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name={AppRouter.changePassword}
+        component={ChangePassword}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>
