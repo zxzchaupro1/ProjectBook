@@ -10,7 +10,7 @@ export const Search = memo(() => {
   const [textSearch, setTextSearch] = useState("");
   const { status, data, error, isFetching, isLoading } =
     useSearchBook(textSearch);
-
+  console.log("data", data);
   // handle debouce search when user onpress
   const handleSearch = useCallback(
     debounce((text) => {
@@ -48,7 +48,7 @@ export const Search = memo(() => {
         </View>
       </View>
       {isLoading && <ActivityIndicator />}
-      {(error || data.length === 0) && (
+      {(error || (data && data?.length === 0)) && (
         <Text style={tw`text-center mt-30px`}>
           Không tìm thấy kết quả phù hợp!
         </Text>

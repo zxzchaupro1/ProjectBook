@@ -1,12 +1,11 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@rneui/themed";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { AuthProvider, FullScreenLoadingProvider } from "./src/contexts";
-
-import FlashMessage from "react-native-flash-message";
-import { AppNavigator } from "./src/navigator";
-
 import { LogBox } from "react-native";
+import FlashMessage from "react-native-flash-message";
+
+import { AuthProvider, FullScreenLoadingProvider } from "./src/contexts";
+import { AppNavigator } from "./src/navigator";
 
 const IGNORED_LOGS = [
   "Non-serializable values were found in the navigation state",
