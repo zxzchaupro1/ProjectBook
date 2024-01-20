@@ -1,7 +1,7 @@
-import instance from './instance';
+import instance from "./instance";
 
 export const getAllBooks = () => {
-  return instance.get('book');
+  return instance.get("/api/getbooks");
 };
 
 export const getBookByCategory = (id) => {

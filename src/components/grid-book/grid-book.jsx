@@ -11,13 +11,15 @@ import {
 import { tw } from "../tw";
 import { useNavigation } from "@react-navigation/native";
 import { AppRouter } from "../../constants";
+import { baseURL } from "../../api/instance";
+import { getUrlImage } from "../../utils/image";
 
 export const GridBook = memo(
   ({ status, error, isFetching, data, isCategory, ...props }) => {
     const navigation = useNavigation();
 
     function renderItem({ item, index }) {
-      const { image, name: title, author } = item;
+      const { image1, bookName, author } = item;
       return (
         <Pressable
           activeOpacity={1}
@@ -31,19 +33,20 @@ export const GridBook = memo(
           }}
         >
           <View>
-            <Image source={{ uri: image }} style={styles.image} />
+            <Image source={{ uri:getUrlImage(image1) }} style={styles.image} />
             <Text style={styles.name} numberOfLines={2}>
-              {title}
+              {bookName}
             </Text>
             {author && (
               <Text style={styles.descriptionText} numberOfLines={1}>
-                {author}
+                {author.authorName}
               </Text>
             )}
           </View>
         </Pressable>
       );
     }
+
 
     return (
       <View style={{ flex: 1 }}>
@@ -53,7 +56,7 @@ export const GridBook = memo(
           contentContainerStyle={[tw`py-16px justify-between -m-6px px-4px`]}
           numColumns={3}
           renderItem={renderItem}
-          keyExtractor={(item) => `${item.id}`}
+          keyExtractor={(item) => `${item._id}`}
           onEndReachedThreshold={0.8}
           ListFooterComponent={
             status === "loading" ? <ActivityIndicator /> : null

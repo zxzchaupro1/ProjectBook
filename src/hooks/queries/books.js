@@ -1,13 +1,14 @@
-import { useQuery } from 'react-query';
-import { getAllBooks, getBookByCategory } from '../../api/book';
+import { useQuery } from "react-query";
+import { getAllBooks, getBookByCategory } from "../../api/book";
 
 const getbooks = async () => {
   const res = await getAllBooks();
-  return res.data;
+  console.log("res", res.data.data);
+  return res.data.data ?? [];
 };
 
 export function useQueryBooks() {
-  return useQuery(['books'], () => getbooks());
+  return useQuery(["books"], () => getbooks());
 }
 
 const getbookbycate = async (id) => {
@@ -17,5 +18,5 @@ const getbookbycate = async (id) => {
 };
 
 export function useQueryBookByCategory(id) {
-  return useQuery(['books', id], () => getbookbycate(id));
+  return useQuery(["books", id], () => getbookbycate(id));
 }

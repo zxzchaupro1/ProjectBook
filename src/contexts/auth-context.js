@@ -20,10 +20,10 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const { getItem, setItem, removeItem } = useAsyncStorage(
-    StorageKeys.user_info,
+    StorageKeys.user_info
   );
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const [user, setUser] = useState();
 

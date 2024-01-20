@@ -6,6 +6,7 @@ import { AppRouter, StorageKeys } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { showMessage } from "react-native-flash-message";
+import { getUrlImage } from "../../utils/image";
 
 export const BookDetail = memo(({ route }) => {
   const navigation = useNavigation();
@@ -24,7 +25,7 @@ export const BookDetail = memo(({ route }) => {
   const handleRedirect = () => {
     navigation.navigate(AppRouter.bookView, {
       url: book.content,
-      headerTitle: book.name,
+      headerTitle: book.bookName,
       item: book,
     });
   };
@@ -71,18 +72,18 @@ export const BookDetail = memo(({ route }) => {
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.imageParent}>
-          <Image source={{ uri: book.image }} style={styles.image} />
+          <Image source={{ uri: getUrlImage(book.image1) }} style={styles.image} />
         </View>
         <View style={styles.header}></View>
         <View>
           <View style={styles.containerBackground}>
             <Text style={tw`text-center text-18px font-semibold py-8px`}>
-              {book.name}
+              {book.bookName}
             </Text>
             <Text
               style={tw`text-center text-14px text-grayscale-light pb-16px`}
             >
-              {book.author}
+              {book.author.authorName}
             </Text>
 
             <View
@@ -90,7 +91,7 @@ export const BookDetail = memo(({ route }) => {
             >
               <View>
                 <Text style={tw`text-14px font-normal text-center`}>
-                  {book.page || 200}{" "}
+                  {book.pages || 200}{" "}
                 </Text>
                 <Text style={tw`text-13px text-grayscale-light text-center`}>
                   Trang
@@ -116,7 +117,7 @@ export const BookDetail = memo(({ route }) => {
               </View>
             </View>
             <Text style={tw`my-8px text-center px-24px`}>
-              {book.description}
+              {book.bookDetails}
             </Text>
           </View>
         </View>

@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseURL = "http://192.168.1.7:3000";
+// get ipv4 from my device and change this line
+export const baseURL = "http://192.168.1.8:3000";
 
 const instance = axios.create({
   baseURL,
@@ -14,7 +15,7 @@ instance.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  },
+  }
 );
 
 instance.interceptors.response.use(
@@ -23,6 +24,6 @@ instance.interceptors.response.use(
   },
   function (error) {
     return Promise.reject(error);
-  },
+  }
 );
 export default instance;
