@@ -9,5 +9,7 @@ export const getBookByCategory = (id) => {
 }
 
 export const search = (name) => {
-  return instance.get(`book?q=${name}`)
+  return instance.get(`search`, {
+    name,
+  })
 }

@@ -52,14 +52,10 @@ export const Login = memo(() => {
     setLoading(true)
     loginApi(values)
       .then((res) => {
-        const isMember = res.data.user.isMember
-        if (!isMember) {
-          navigation.navigate(AppRouter.member, { user: { ...res.data.user } })
-          return
-        }
-        login({ ...res.data.user })
+        login({ ...res.data.data })
       })
       .catch((err) => {
+        console.log('login failed', err)
         showMessage({
           description: err?.message,
           message: 'Đăng nhập thất bại vui lòng thử lại',

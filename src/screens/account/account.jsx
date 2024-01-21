@@ -16,6 +16,8 @@ export const Account = React.memo(() => {
     logout()
   }
 
+  console.log('user', user)
+
   return (
     <Screen>
       <ScrollView contentContainerStyle={tw`grow`}>
@@ -23,7 +25,7 @@ export const Account = React.memo(() => {
           <View style={tw`flex-row items-center`}>
             <Image style={tw`w-56px h-56px rounded-full`} source={require('../../../src/asset/defaultavatar.png')} />
             <View style={tw`ml-12px`}>
-              <Text style={tw`text-19px font-semibold text-grayscale-black leading-24px`}>{user?.fullname}</Text>
+              <Text style={tw`text-19px font-semibold text-grayscale-black leading-24px`}>{user?.username}</Text>
               <Text style={tw`text-14px font-semibold text-grayscale-light leading-14px mt-8px`}>{user?.email}</Text>
             </View>
           </View>
