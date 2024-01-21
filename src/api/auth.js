@@ -10,3 +10,6 @@ export const registerApi = (data) => {
 export const updateProfileApi = (userId, data) => {
   return instance.post(`/api/editUser/${userId}`, data)
 }
+export const changePWApi = (userId, data) => {
+  return instance.post(`/api/changePassword/${userId}`, data)
+}

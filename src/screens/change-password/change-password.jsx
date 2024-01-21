@@ -4,10 +4,10 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import { AppRouter, REGEXP, validationMessage } from '../../constants'
+import { REGEXP, validationMessage } from '../../constants'
 import { TextInput, tw } from '../../components'
 import { Button } from '@rneui/themed'
-import { updateProfileApi } from '../../api/auth'
+import { changePWApi } from '../../api/auth'
 import { useAuth } from '../../contexts'
 import { showMessage } from 'react-native-flash-message'
 import { useNavigation } from '@react-navigation/native'
@@ -53,22 +53,10 @@ export const ChangePassword = memo(() => {
     mode: 'onChange',
   })
 
-  const handleLogin = ({ currentPassword, password, confirmPassword }) => {
+  const handleChangePassword = ({ currentPassword, confirmPassword }) => {
     setLoading(true)
-    // check cureen password
 
-    if (user?.confirmPassword !== currentPassword) {
-      showMessage({
-        type: 'danger',
-        message: 'Đổi mật khẩu thất bại!',
-        description: 'Mật khẩu cũ không chính xác.',
-      })
-      setLoading(false)
-
-      return
-    }
-
-    updateProfileApi(user?._id, { password, confirmPassword })
+    changePWApi(user?._id, { oldPassword: currentPassword, newPassword: confirmPassword })
       .then(async (res) => {
         showMessage({
           type: 'success',
@@ -181,7 +169,7 @@ export const ChangePassword = memo(() => {
           )}
         />
         <View style={tw`w-full px-60px mt-36px`}>
-          <Button title="Cập nhật" onPress={handleSubmit(handleLogin)} loading={loading} disabled={loading} />
+          <Button title="Cập nhật" onPress={handleSubmit(handleChangePassword)} loading={loading} disabled={loading} />
         </View>
       </SafeAreaView>
       <StatusBar style="auto" />
