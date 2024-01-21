@@ -9,7 +9,7 @@ import { Text } from '@rneui/themed'
 export const Search = memo(() => {
   const [textSearch, setTextSearch] = useState('')
   const { status, data, error, isFetching, isLoading } = useSearchBook(textSearch)
-  console.log('data', data)
+
   // handle debouce search when user onpress
   const handleSearch = useCallback(
     debounce((text) => {
@@ -33,21 +33,19 @@ export const Search = memo(() => {
           }}
         >
           <Image style={{ width: 20, height: 20, marginLeft: 16 }} source={require('../..//asset/search.png')} />
-          <View style={tw`pl-12px`}>
-            <TextInput
-              style={tw`w-full`}
-              placeholder="Tìm kiếm sách"
-              placeholderTextColor="#808080"
-              onChangeText={handleSearch}
-            />
-          </View>
+          <TextInput
+            style={tw`w-full h-[36px] pl-[16px]`}
+            placeholder="Tìm kiếm sách"
+            placeholderTextColor="#808080"
+            onChangeText={handleSearch}
+          />
         </View>
       </View>
       {isLoading && <ActivityIndicator />}
       {(error || (data && data?.length === 0)) && (
         <Text style={tw`text-center mt-30px`}>Không tìm thấy kết quả phù hợp!</Text>
       )}
-      <GridBook status={status} data={data} error={error} isFetching={isFetching} />
+      <GridBook status={status} data={data} error={error} isFetching={isLoading || isFetching} />
     </View>
   )
 })

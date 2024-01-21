@@ -3,7 +3,7 @@ import { search } from '../../api/book'
 
 const searchbook = async (name) => {
   const res = await search(name)
-  return res.data
+  return res?.data?.data ?? []
 }
 
 export function useSearchBook(name) {
