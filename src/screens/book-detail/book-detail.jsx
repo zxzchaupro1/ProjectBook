@@ -19,8 +19,6 @@ export const BookDetail = memo(({ route }) => {
 
   const book = useMemo(() => route?.params?.item, [route])
 
-  console.log('book',book);
-
   const readItemFromStorage = async () => {
     const item = await getItem()
     if (item) {
@@ -118,9 +116,9 @@ export const BookDetail = memo(({ route }) => {
                 <Text style={tw`text-13px text-grayscale-light text-center`}>Yêu thích</Text>
               </View>
             </View>
-            <Text style={tw`my-2px px-24px`}>Thể loại: {' '+ book.genre.genreName}</Text>
-            <Text style={tw`my-2px px-24px`}>Ngôn ngữ: {' '+ book.language}</Text>
-            <Text style={tw`my-2px px-24px`}>Mô tả: {' '+ book.bookDetails}</Text>
+            <Text style={tw`my-2px px-24px`}>Thể loại: {' ' + book.genre.genreName}</Text>
+            <Text style={tw`my-2px px-24px`}>Ngôn ngữ: {' ' + book.language}</Text>
+            <Text style={tw`my-2px px-24px`}>Mô tả: {' ' + book.bookDetails}</Text>
           </View>
         </View>
       </ScrollView>

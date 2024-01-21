@@ -3,7 +3,6 @@ import { getAllBooks, getBookByCategory } from '../../api/book'
 
 const getbooks = async () => {
   const res = await getAllBooks()
-  console.log('res', res.data.data)
   return res.data.data ?? []
 }
 

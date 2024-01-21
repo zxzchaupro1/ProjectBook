@@ -4,6 +4,7 @@ import Carousel from 'react-native-anchor-carousel'
 import SimplePaginationDot from './SimplePaginationDot'
 import { useQueryBanners } from '../../hooks/queries'
 import { tw } from '../tw'
+import { getUrlImage } from '../../utils/image'
 
 const { width: windowWidth } = Dimensions.get('window')
 
@@ -19,7 +20,7 @@ export const Banner = memo((props) => {
   }
 
   function renderItem({ item, index }) {
-    const { image: uri } = item
+    const { homeImage: uri } = item
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -28,7 +29,7 @@ export const Banner = memo((props) => {
           carouselRef.current.scrollToIndex(index)
         }}
       >
-        <ImageBackground source={{ uri: uri }} style={styles.imageBackground} />
+        <ImageBackground source={{ uri: getUrlImage(uri) }} style={styles.imageBackground} />
       </TouchableOpacity>
     )
   }
@@ -45,13 +46,13 @@ export const Banner = memo((props) => {
         style={styles.carousel}
         data={data}
         renderItem={renderItem}
-        itemWidth={0.7 * windowWidth}
-        inActiveOpacity={0.3}
+        itemWidth={windowWidth}
+        inActiveOpacity={0}
         containerWidth={windowWidth}
         onScrollEnd={handleCarouselScrollEnd}
         ref={carouselRef}
       />
-      <SimplePaginationDot currentIndex={currentIndex} length={data.length} />
+      {/* <SimplePaginationDot currentIndex={currentIndex} length={data.length} /> */}
     </View>
   )
 })
