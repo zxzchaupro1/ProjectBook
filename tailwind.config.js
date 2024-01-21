@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin');
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -76,9 +76,9 @@ module.exports = {
           justifyContent: 'center',
           alignItems: 'center',
         },
-      };
+      }
 
-      addUtilities(flex);
+      addUtilities(flex)
     }),
   ],
-};
+}

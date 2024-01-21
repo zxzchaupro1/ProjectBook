@@ -1,15 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native'
 
 function genCircleStyle(size) {
   if (!size) {
-    return {};
+    return {}
   }
-  return {width: size, height: size, borderRadius: size / 2};
+  return { width: size, height: size, borderRadius: size / 2 }
 }
 
-function Dot({isActive, color, activeDotSize, inActiveDotSize, dotSeparator}) {
+function Dot({ isActive, color, activeDotSize, inActiveDotSize, dotSeparator }) {
   const processedActiveDotStyle = [
     styles.activeDot,
     {
@@ -18,7 +18,7 @@ function Dot({isActive, color, activeDotSize, inActiveDotSize, dotSeparator}) {
       marginHorizontal: dotSeparator / 2,
       ...genCircleStyle(activeDotSize),
     },
-  ];
+  ]
   const processedInActiveDotStyle = [
     styles.inActiveDot,
     {
@@ -27,15 +27,8 @@ function Dot({isActive, color, activeDotSize, inActiveDotSize, dotSeparator}) {
       marginHorizontal: dotSeparator / 2,
       ...genCircleStyle(inActiveDotSize),
     },
-  ];
-  return (
-    <View
-      style={[
-        styles.baseDot,
-        isActive ? processedActiveDotStyle : processedInActiveDotStyle,
-      ]}
-    />
-  );
+  ]
+  return <View style={[styles.baseDot, isActive ? processedActiveDotStyle : processedInActiveDotStyle]} />
 }
 
 export default function SimplePaginationDot(props) {
@@ -47,7 +40,7 @@ export default function SimplePaginationDot(props) {
     activeDotSize = 14,
     inActiveDotSize = 10,
     dotSeparator = 10,
-  } = props;
+  } = props
   function renderItem(item, index) {
     return (
       <Dot
@@ -58,13 +51,9 @@ export default function SimplePaginationDot(props) {
         inActiveDotSize={inActiveDotSize}
         dotSeparator={dotSeparator}
       />
-    );
+    )
   }
-  return (
-    <View style={[styles.container, style]}>
-      {Array(length).fill(0).map(renderItem)}
-    </View>
-  );
+  return <View style={[styles.container, style]}>{Array(length).fill(0).map(renderItem)}</View>
 }
 
 const styles = StyleSheet.create({
@@ -86,4 +75,4 @@ const styles = StyleSheet.create({
   inActiveDot: {
     backgroundColor: 'transparent',
   },
-});
+})

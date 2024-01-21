@@ -1,11 +1,11 @@
-import { useQuery } from "react-query";
-import { getAllBanner } from "../../api/banner";
+import { useQuery } from 'react-query'
+import { getAllBanner } from '../../api/banner'
 
 const getBanners = async () => {
-  const res = await getAllBanner();
-  return res.data;
-};
+  const res = await getAllBanner()
+  return res.data
+}
 
 export function useQueryBanners() {
-  return useQuery(["banners"], () => getBanners());
+  return useQuery(['banners'], () => getBanners())
 }

@@ -1,1 +1,1 @@
-export * from "./category.jsx";
+export * from './category.jsx'

@@ -1,1 +1,1 @@
-export * from "./setting.jsx";
+export * from './setting.jsx'

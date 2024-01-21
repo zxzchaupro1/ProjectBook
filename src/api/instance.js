@@ -1,29 +1,29 @@
-import axios from "axios";
+import axios from 'axios'
 
 // get ipv4 from my device and change this line
-export const baseURL = "http://192.168.1.8:3000";
+export const baseURL = 'http://192.168.1.8:3000'
 
 const instance = axios.create({
   baseURL,
   timeout: 5000,
-  headers: { accept: "application/json" },
-});
+  headers: { accept: 'application/json' },
+})
 
 instance.interceptors.request.use(
   function (config) {
-    return config;
+    return config
   },
   function (error) {
-    return Promise.reject(error);
-  }
-);
+    return Promise.reject(error)
+  },
+)
 
 instance.interceptors.response.use(
   function (response) {
-    return response;
+    return response
   },
   function (error) {
-    return Promise.reject(error);
-  }
-);
-export default instance;
+    return Promise.reject(error)
+  },
+)
+export default instance

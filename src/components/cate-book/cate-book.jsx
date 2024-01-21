@@ -1,29 +1,28 @@
-import React, { useRef } from 'react';
-import { StyleSheet, Text, View, Dimensions, Image, Pressable } from 'react-native';
-import Carousel from 'react-native-anchor-carousel';
+import React, { useRef } from 'react'
+import { StyleSheet, Text, View, Dimensions, Image, Pressable } from 'react-native'
+import Carousel from 'react-native-anchor-carousel'
 
-const { width: windowWidth } = Dimensions.get('window');
-const SEPARATOR_WIDTH = 2;
-export const CategoryBook = ({ data, topic,itemWidth }) => {
-  const carouselRef = useRef(null);
+const { width: windowWidth } = Dimensions.get('window')
+const SEPARATOR_WIDTH = 2
+export const CategoryBook = ({ data, topic, itemWidth }) => {
+  const carouselRef = useRef(null)
 
   function renderHeader() {
     return (
       <View style={styles.header}>
         <Text style={styles.name}>{topic}</Text>
       </View>
-    );
+    )
   }
 
-
   function renderItem({ item, index }) {
-    const { imageBook: image, name: title, author } = item;
+    const { imageBook: image, name: title, author } = item
     return (
       <Pressable
         activeOpacity={1}
         style={styles.item}
         onPress={() => {
-          carouselRef.current.scrollToIndex(index);
+          carouselRef.current.scrollToIndex(index)
         }}
       >
         <Image source={{ uri: image }} style={styles.image} />
@@ -38,27 +37,27 @@ export const CategoryBook = ({ data, topic,itemWidth }) => {
           </View>
         </View>
       </Pressable>
-    );
+    )
   }
 
   return (
     <View style={styles.container}>
       {topic && renderHeader()}
       <Carousel
-        keyExtractor={(item) => item?.id}
+        keyExtractor={(item) => item?._id}
         style={[styles.carousel, styles.content]}
         ref={carouselRef}
         data={data}
         renderItem={renderItem}
-        itemWidth={ (itemWidth ? itemWidth : 0.6) * windowWidth}
+        itemWidth={(itemWidth ? itemWidth : 0.6) * windowWidth}
         separatorWidth={SEPARATOR_WIDTH}
         inActiveScale={1}
         inActiveOpacity={1}
         containerWidth={windowWidth}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   content: {},
@@ -105,4 +104,4 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#202C38',
   },
-});
+})

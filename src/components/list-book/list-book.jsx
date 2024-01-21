@@ -1,12 +1,12 @@
-import { memo } from 'react';
-import { Text, View, Image, TouchableOpacity, FlatList } from 'react-native';
-import { numberWithDots } from '../../utils';
-import { tw } from '../tw';
+import { memo } from 'react'
+import { Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
+import { numberWithDots } from '../../utils'
+import { tw } from '../tw'
 
 export const ListBook = memo(({ status, error, isFetching, data }) => {
   const goToDetail = (item) => {
-    navigation.navigate(AppRouter.book, { item: item });
-  };
+    navigation.navigate(AppRouter.book, { item: item })
+  }
   return (
     <View style={{ flex: 1 }}>
       {status === 'loading' || isFetching ? (
@@ -18,8 +18,7 @@ export const ListBook = memo(({ status, error, isFetching, data }) => {
       <FlatList
         data={data}
         renderItem={({ item }) => {
-          console.log('item',item);
-          const partialText = item.name.split(textSearch);
+          const partialText = item.name.split(textSearch)
           return (
             <View
               style={{
@@ -45,7 +44,7 @@ export const ListBook = memo(({ status, error, isFetching, data }) => {
                               <Text style={{ color: 'blue', fontWeight: '900' }}>{textSearch}</Text>
                             )}
                           </Text>
-                        );
+                        )
                       })}
                     </Text>
                     <Text
@@ -66,16 +65,16 @@ export const ListBook = memo(({ status, error, isFetching, data }) => {
                         height: '100%',
                         marginBottom: 8,
                       }}
-                      resizeMode='contain'
+                      resizeMode="contain"
                     />
                   </View>
                 </View>
               </TouchableOpacity>
             </View>
-          );
+          )
         }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
       />
     </View>
-  );
-});
+  )
+})

@@ -1,11 +1,11 @@
-import { useQuery } from 'react-query';
-import { search } from '../../api/book';
+import { useQuery } from 'react-query'
+import { search } from '../../api/book'
 
 const searchbook = async (name) => {
-  const res = await search(name);
-  return res.data;
-};
+  const res = await search(name)
+  return res.data
+}
 
 export function useSearchBook(name) {
-  return useQuery(['search-book', name], () => searchbook(name));
+  return useQuery(['search-book', name], () => searchbook(name))
 }

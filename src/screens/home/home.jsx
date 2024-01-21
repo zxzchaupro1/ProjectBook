@@ -1,19 +1,17 @@
-import { memo, useMemo } from "react";
-import { ActivityIndicator, ScrollView, SectionList, View } from "react-native";
-import _ from "lodash";
-import { Banner, GridBook, tw } from "../../components";
-import { useQueryBooks } from "../../hooks";
-import { Text } from "@rneui/themed";
-import { SafeAreaView } from "react-native-safe-area-context";
-
+import { memo, useMemo } from 'react'
+import { ActivityIndicator, ScrollView, SectionList, View } from 'react-native'
+import _ from 'lodash'
+import { Banner, GridBook, tw } from '../../components'
+import { useQueryBooks } from '../../hooks'
+import { Text } from '@rneui/themed'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export const Home = memo(() => {
-  const { data, isFetching, isLoading, isError, status, error } =
-    useQueryBooks();
+  const { data, isFetching, isLoading, isError, status, error } = useQueryBooks()
 
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
-      <ScrollView nestedScrollEnabled={true} style={{ width: "100%" }}>
+      <ScrollView nestedScrollEnabled={true} style={{ width: '100%' }}>
         <Banner />
         {isLoading || isFetching ? (
           <View style={tw`flex justify-center items-center`}>
@@ -21,15 +19,9 @@ export const Home = memo(() => {
           </View>
         ) : null}
         {isError ? <Text>{error.message}</Text> : null}
-         <View key={"idx"}>
-            <GridBook
-              status={status}
-              data={data}
-              error={error}
-              isFetching={isFetching}
-              scrollEnabled={false}
-            />
-          </View>
+        <View key={'idx'}>
+          <GridBook status={status} data={data} error={error} isFetching={isFetching} scrollEnabled={false} />
+        </View>
         {/* <Text style={tw`px-12px pt-16px font-bold text-18px`}>Sách mới</Text>
           <GridBook
             status={status}
@@ -49,5 +41,5 @@ export const Home = memo(() => {
           /> */}
       </ScrollView>
     </SafeAreaView>
-  );
-});
+  )
+})

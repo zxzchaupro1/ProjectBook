@@ -1,1 +1,1 @@
-export * from './grid-book';
+export * from './grid-book'

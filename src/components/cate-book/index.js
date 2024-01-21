@@ -1,1 +1,1 @@
-export * from './cate-book';
+export * from './cate-book'

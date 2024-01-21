@@ -1,2 +1,2 @@
-export * from "./fullscreenloading";
-export * from "./auth-context";
+export * from './fullscreenloading'
+export * from './auth-context'
