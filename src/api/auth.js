@@ -7,6 +7,6 @@ export const loginApi = (data) => {
 export const registerApi = (data) => {
   return instance.post('/api/signupNoOtp', data)
 }
-export const updateProfileApi = (id, data) => {
-  return instance.patch(`users/${id}`, data)
+export const updateProfileApi = (userId, data) => {
+  return instance.post(`/api/editUser/${userId}`, data)
 }
