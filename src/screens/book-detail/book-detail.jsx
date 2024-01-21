@@ -97,11 +97,11 @@ export const BookDetail = memo(({ route }) => {
         <View style={styles.header}></View>
         <View>
           <View style={styles.containerBackground}>
-            <Text style={tw`text-center text-18px font-semibold py-8px`}>{book.bookName}</Text>
+            <Text style={tw`text-center text-18px font-semibold`}>{book.bookName}</Text>
             <Text style={tw`text-center text-14px text-grayscale-light pb-16px`}>{book.author.authorName}</Text>
 
             <View
-              style={tw`mx-16px border-t border-b border-grayscale-border flex-row justify-around items-center py-16px text-center`}
+              style={tw`mx-16px border-t border-b border-grayscale-border flex-row justify-around items-center py-16px text-center mb-[12px]`}
             >
               <View>
                 <Text style={tw`text-14px font-normal text-center`}>{book.pages || 200} </Text>
@@ -118,7 +118,9 @@ export const BookDetail = memo(({ route }) => {
                 <Text style={tw`text-13px text-grayscale-light text-center`}>Yêu thích</Text>
               </View>
             </View>
-            <Text style={tw`my-8px text-center px-24px`}>{book.bookDetails}</Text>
+            <Text style={tw`my-2px px-24px`}>Thể loại: {' '+ book.genre.genreName}</Text>
+            <Text style={tw`my-2px px-24px`}>Ngôn ngữ: {' '+ book.language}</Text>
+            <Text style={tw`my-2px px-24px`}>Mô tả: {' '+ book.bookDetails}</Text>
           </View>
         </View>
       </ScrollView>
