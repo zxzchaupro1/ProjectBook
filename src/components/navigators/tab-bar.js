@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Image } from 'react-native'
-import { Account, Category, Home, Library, Search, Setting } from '../../screens'
+import { Account, Category, Home, Library, Search } from '../../screens'
 import { AppRouter } from '../../constants'
+import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator()
 export const Tabbar = () => {
@@ -13,10 +13,7 @@ export const Tabbar = () => {
         options={{
           headerShown: true,
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../../../src/asset/home.png')}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <FontAwesome name="home" size={24} style={{ color: color, width: size, height: size }} />
           ),
         }}
       />
@@ -27,10 +24,7 @@ export const Tabbar = () => {
         options={{
           headerShown: true,
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../../../src/asset/cart.png')}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <FontAwesome name="book" size={24} style={{ color: color, width: size, height: size }} />
           ),
         }}
       />
@@ -41,10 +35,7 @@ export const Tabbar = () => {
         options={{
           headerShown: true,
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../../../src/asset/search.png')}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <FontAwesome name="search" size={24} style={{ color: color, width: size, height: size }} />
           ),
         }}
       />
@@ -55,10 +46,7 @@ export const Tabbar = () => {
         options={{
           headerShown: true,
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../../../src/asset/book.png')}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <MaterialCommunityIcons name="bookshelf" size={24} style={{ color: color, width: size, height: size }} />
           ),
         }}
       />
@@ -69,10 +57,7 @@ export const Tabbar = () => {
         options={{
           headerShown: true,
           tabBarIcon: ({ color, size }) => (
-            <Image
-              source={require('../../../src/asset/user.png')}
-              style={{ tintColor: color, width: size, height: size }}
-            />
+            <FontAwesome name="user" size={24} style={{ color: color, width: size, height: size }} />
           ),
         }}
       />

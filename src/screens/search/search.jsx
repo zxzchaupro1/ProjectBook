@@ -5,6 +5,7 @@ import { debounce } from 'lodash'
 import { GridBook, tw } from '../../components'
 import { useSearchBook } from '../../hooks'
 import { Text } from '@rneui/themed'
+import { FontAwesome } from '@expo/vector-icons'
 
 export const Search = memo(() => {
   const [textSearch, setTextSearch] = useState('')
@@ -32,7 +33,7 @@ export const Search = memo(() => {
             alignItems: 'center',
           }}
         >
-          <Image style={{ width: 20, height: 20, marginLeft: 16 }} source={require('../..//asset/search.png')} />
+          <FontAwesome name="search" size={24} style={{ marginLeft: 16 }} />
           <TextInput
             style={tw`w-full h-[36px] pl-[16px]`}
             placeholder="Tìm kiếm sách"

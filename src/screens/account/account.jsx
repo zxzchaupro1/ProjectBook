@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
-import { Image } from '@rneui/themed'
 import { Screen } from 'react-native-screens'
 import { useNavigation } from '@react-navigation/native'
 
 import { tw } from '../../components'
 import { useAuth } from '../../contexts'
 import { AppRouter } from '../../constants'
+import { FontAwesome, Fontisto, Feather } from '@expo/vector-icons'
 
 export const Account = React.memo(() => {
   const navigation = useNavigation()
@@ -21,7 +21,7 @@ export const Account = React.memo(() => {
       <ScrollView contentContainerStyle={tw`grow`}>
         <View style={tw`px-16px pt-16px pb-24px border-b border-grayscale-border`}>
           <View style={tw`flex-row items-center`}>
-            <Image style={tw`w-56px h-56px rounded-full`} source={require('../../../src/asset/defaultavatar.png')} />
+            <FontAwesome name="user-o" size={38} />
             <View style={tw`ml-12px`}>
               <Text style={tw`text-19px font-semibold text-grayscale-black leading-24px`}>{user?.username}</Text>
               <Text style={tw`text-14px font-semibold text-grayscale-light leading-14px mt-8px`}>{user?.email}</Text>
@@ -33,13 +33,7 @@ export const Account = React.memo(() => {
             style={tw`flex-row items-center justify-between`}
             onPress={() => navigation.navigate(AppRouter.updateProfile)}
           >
-            <Image
-              style={{
-                width: 20,
-                height: 20,
-              }}
-              source={require('../../../src/asset/card.png')}
-            />
+            <FontAwesome name="address-book-o" size={24} />
             <View style={tw`flex-row flex-1 border-b border-grayscale-border ml-16px py-12px`}>
               <Text style={tw`text-14px text-grayscale-black flex-1`}>Cập nhật tài khoản</Text>
             </View>
@@ -48,13 +42,7 @@ export const Account = React.memo(() => {
             style={tw`flex-row items-center justify-between`}
             onPress={() => navigation.navigate(AppRouter.changePassword)}
           >
-            <Image
-              style={{
-                width: 20,
-                height: 20,
-              }}
-              source={require('../../../src/asset/lock.png')}
-            />
+            <Feather name="unlock" size={24} color="black" />
             <View style={tw`flex-row flex-1 border-b border-grayscale-border ml-16px py-12px`}>
               <Text style={tw`text-14px text-grayscale-black flex-1`}>Đổi mật khẩu</Text>
             </View>
@@ -63,13 +51,7 @@ export const Account = React.memo(() => {
             style={tw`flex-row items-center justify-between`}
             onPress={() => navigation.navigate(AppRouter.rewards)}
           >
-            <Image
-              style={{
-                width: 20,
-                height: 20,
-              }}
-              source={require('../../../src/asset/exchange.png')}
-            />
+            <Fontisto name="arrow-swap" size={24} color="black" />
             <View style={tw`flex-row flex-1 border-b border-grayscale-border ml-16px py-12px`}>
               <Text style={tw`text-14px text-grayscale-black flex-1`}>Đổi thưởng</Text>
             </View>
