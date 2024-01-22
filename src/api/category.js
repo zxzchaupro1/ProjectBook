@@ -1,5 +1,5 @@
 import instance from './instance'
 
 export const getAllCategory = () => {
-  return instance.get('/category')
+  return instance.get('/api/get-genres')
 }

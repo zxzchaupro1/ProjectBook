@@ -7,11 +7,11 @@ import { Screen } from 'react-native-screens'
 
 export const CategoryDetail = memo(({ route }) => {
   const navigation = useNavigation()
-  const { data, isFetching, error, status } = useQueryBookByCategory(route?.params.item._id)
+  const { data = [], isFetching, error, status } = useQueryBookByCategory(route?.params.item.genreId)
 
   useEffect(() => {
-    if (route?.params.item.name) {
-      navigation.setOptions({ title: route?.params.item.name })
+    if (route?.params.item.genreName) {
+      navigation.setOptions({ title: route?.params.item.genreName })
     }
   }, [route])
   return (

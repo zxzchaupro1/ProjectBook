@@ -13,7 +13,7 @@ export function useQueryBooks() {
 const getbookbycate = async (id) => {
   if (!id) return
   const res = await getBookByCategory(id)
-  return res.data
+  return res?.data?.data ?? []
 }
 
 export function useQueryBookByCategory(id) {

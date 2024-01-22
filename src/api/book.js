@@ -5,7 +5,7 @@ export const getAllBooks = () => {
 }
 
 export const getBookByCategory = (id) => {
-  return instance.get(`book?categoryId=${id}`)
+  return instance.get(`/api/getbooks/genre/${id}`)
 }
 
 export const search = (name) => {

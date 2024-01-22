@@ -3,10 +3,9 @@ import { Text, View, Image, FlatList, Pressable, StyleSheet, ActivityIndicator }
 import { tw } from '../tw'
 import { useNavigation } from '@react-navigation/native'
 import { AppRouter } from '../../constants'
-import { baseURL } from '../../api/instance'
 import { getUrlImage } from '../../utils/image'
 
-export const GridBook = memo(({ status, error, isFetching, data, isCategory, ...props }) => {
+export const GridBook = memo(({ status, error, isFetching, data, isCategory, genre, ...props }) => {
   const navigation = useNavigation()
 
   function renderItem({ item, index }) {
@@ -16,10 +15,6 @@ export const GridBook = memo(({ status, error, isFetching, data, isCategory, ...
         activeOpacity={1}
         style={tw`w-1/3 p-6px`}
         onPress={() => {
-          if (isCategory) {
-            navigation.navigate(AppRouter.categoryDetail, { item: item })
-            return
-          }
           navigation.navigate(AppRouter.bookDetail, { item: item })
         }}
       >

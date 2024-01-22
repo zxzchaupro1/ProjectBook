@@ -4,7 +4,7 @@ import { getAllCategory } from '../../api/category'
 const getCategories = async () => {
   try {
     const res = await getAllCategory()
-    return res.data
+    return res?.data?.data ?? []
   } catch (error) {
     return error
   }
