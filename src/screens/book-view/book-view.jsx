@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useState } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import WebView from 'react-native-webview'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
@@ -6,8 +6,11 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { tw } from '../../components'
 import { StorageKeys } from '../../constants'
 import { ActivityIndicator } from 'react-native'
+import { useAuth } from '../../contexts'
+import { addPointApi } from '../../api/book'
 
 export const BookView = memo(({ route }) => {
+  const { user } = useAuth()
   const { getItem, setItem } = useAsyncStorage(StorageKeys.reading)
   const { getItem: getBooksReaded, setItem: setBooksReaded } = useAsyncStorage(StorageKeys.readed)
   const [loading, setLoading] = useState(false)
@@ -15,7 +18,7 @@ export const BookView = memo(({ route }) => {
 
   const book = useMemo(() => route?.params?.item, [route])
 
-  const handleSetBooksReading = async () => {
+  const handleSetBooksReading = useCallback(async () => {
     try {
       let bookReading = []
       const item = await getItem()
@@ -35,9 +38,9 @@ export const BookView = memo(({ route }) => {
       // save error
       console.log('error-save-book-reading', e)
     }
-  }
+  }, [user, book])
 
-  const handleSetBooksReaded = async () => {
+  const handleSetBooksReaded = useCallback(async () => {
     try {
       let bookReaded = []
       const item = await getBooksReaded()
@@ -45,7 +48,6 @@ export const BookView = memo(({ route }) => {
         const parse = JSON.parse(item)
         bookReaded = [...parse]
       }
-
       // handle remove book reading because here book is readed
 
       const booksReadingNew = booksReading.filter((item) => item._id !== book._id)
@@ -55,13 +57,14 @@ export const BookView = memo(({ route }) => {
 
       const isExist = bookReaded.find((items) => items._id === book._id)
       if (isExist) return
+
       const newBookReaded = [...bookReaded, book]
       await setBooksReaded(JSON.stringify(newBookReaded))
     } catch (e) {
       // save error
       console.log('error-save-book-readed', e)
     }
-  }
+  }, [book])
 
   const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
     const paddingToBottom = 20
@@ -70,7 +73,10 @@ export const BookView = memo(({ route }) => {
 
   useEffect(() => {
     handleSetBooksReading()
-  }, [book])
+    console.log(111, user)
+    console.log(222, book)
+    addPointApi(user._id, book._id)
+  }, [])
 
   return (
     <SafeAreaView style={tw`flex-1`}>

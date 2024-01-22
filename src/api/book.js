@@ -13,3 +13,10 @@ export const search = (name) => {
     name,
   })
 }
+
+export const addPointApi = (userId, bookId) => {
+  return instance.post('/api/addpoint', {
+    userId,
+    bookId,
+  })
+}

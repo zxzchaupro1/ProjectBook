@@ -7,10 +7,15 @@ import { useNavigation } from '@react-navigation/native'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { showMessage } from 'react-native-flash-message'
 import { getUrlImage } from '../../utils/image'
+import { useQueryBanners, useQueryBooks } from '../../hooks'
 
 export const BookDetail = memo(({ route }) => {
   const navigation = useNavigation()
   const { getItem, setItem } = useAsyncStorage(StorageKeys.favourite)
+
+  const { data = [], isLoading } = useQueryBanners()
+
+  console.log('data', data)
 
   const [favourties, setFavourties] = useState([])
   const [isFullScreen, setIsFullScreen] = useState(false)
@@ -151,7 +156,11 @@ export const BookDetail = memo(({ route }) => {
       {isFullScreen && (
         <Modal animationType="slide" transparent={false}>
           <View style={styles.fullScreenContainer}>
-            <Image source={{ uri: getUrlImage(book.image1) }} style={styles.fullScreenImage} resizeMode="contain" />
+            <Image
+              source={{ uri: getUrlImage(data.length > 0 ? data[0]?.homeImage : '') }}
+              style={styles.fullScreenImage}
+              resizeMode="contain"
+            />
             {showCloseButton ? (
               <TouchableOpacity style={styles.closeButton} onPress={handleRedirect}>
                 <Button type="clear" title="Đóng" onPress={handleRedirect} />
