@@ -20,6 +20,7 @@ export const BookView = memo(({ route }) => {
 
   const handleSetBooksReading = useCallback(async () => {
     try {
+      if (!book) return
       let bookReading = []
       const item = await getItem()
       if (item) {
@@ -38,10 +39,11 @@ export const BookView = memo(({ route }) => {
       // save error
       console.log('error-save-book-reading', e)
     }
-  }, [user, book])
+  }, [book])
 
   const handleSetBooksReaded = useCallback(async () => {
     try {
+      if (!book) return
       let bookReaded = []
       const item = await getBooksReaded()
       if (item) {
