@@ -13,3 +13,9 @@ export const updateProfileApi = (userId, data) => {
 export const changePWApi = (userId, data) => {
   return instance.post(`/api/changePassword/${userId}`, data)
 }
+
+export const getInfoUser = (userId) => {
+  return instance.post(`/api/profile-user`, {
+    userId,
+  })
+}

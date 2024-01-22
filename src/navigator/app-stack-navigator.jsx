@@ -10,6 +10,7 @@ import {
   CategoryDetail,
   ChangePassword,
   Login,
+  RewardPage,
   Singup,
   UpdateProfile,
 } from '../screens'
@@ -33,6 +34,7 @@ export const AppStackNavigator = memo(() => {
       <Stack.Screen name={AppRouter.categoryDetail} component={CategoryDetail} options={{ headerShown: true }} />
       <Stack.Screen name={AppRouter.updateProfile} component={UpdateProfile} options={{ headerShown: true }} />
       <Stack.Screen name={AppRouter.changePassword} component={ChangePassword} options={{ headerShown: true }} />
+      <Stack.Screen name={AppRouter.rewards} component={RewardPage} options={{ headerShown: true }} />
     </Stack.Navigator>
   )
 })

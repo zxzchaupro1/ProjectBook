@@ -12,6 +12,7 @@ const IGNORED_LOGS = [
   'Require cycle:',
   'source.uri should not be an empty string',
   'You are not currently signed in to Expo on your development machine',
+  'Require cycle:',
 ]
 
 LogBox.ignoreLogs(IGNORED_LOGS)

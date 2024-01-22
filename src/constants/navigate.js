@@ -17,4 +17,5 @@ export const AppRouter = {
   account: 'Tài khoản',
   updateProfile: 'Cập nhật tài khoản',
   changePassword: 'Đổi mật khẩu',
+  rewards: 'Đổi thưởng',
 }

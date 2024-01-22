@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { Image } from '@rneui/themed'
 import { Screen } from 'react-native-screens'
@@ -12,11 +12,9 @@ export const Account = React.memo(() => {
   const navigation = useNavigation()
   const { logout, user } = useAuth()
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     logout()
-  }
-
-  console.log('user', user)
+  }, [])
 
   return (
     <Screen>
@@ -37,14 +35,13 @@ export const Account = React.memo(() => {
           >
             <Image
               style={{
-                width: 24,
-                height: 24,
+                width: 20,
+                height: 20,
               }}
               source={require('../../../src/asset/card.png')}
             />
             <View style={tw`flex-row flex-1 border-b border-grayscale-border ml-16px py-12px`}>
               <Text style={tw`text-14px text-grayscale-black flex-1`}>Cập nhật tài khoản</Text>
-              <Text>{'>'}</Text>
             </View>
           </Pressable>
           <Pressable
@@ -53,14 +50,28 @@ export const Account = React.memo(() => {
           >
             <Image
               style={{
-                width: 24,
-                height: 24,
+                width: 20,
+                height: 20,
               }}
               source={require('../../../src/asset/lock.png')}
             />
             <View style={tw`flex-row flex-1 border-b border-grayscale-border ml-16px py-12px`}>
               <Text style={tw`text-14px text-grayscale-black flex-1`}>Đổi mật khẩu</Text>
-              <Text>{'>'}</Text>
+            </View>
+          </Pressable>
+          <Pressable
+            style={tw`flex-row items-center justify-between`}
+            onPress={() => navigation.navigate(AppRouter.rewards)}
+          >
+            <Image
+              style={{
+                width: 20,
+                height: 20,
+              }}
+              source={require('../../../src/asset/exchange.png')}
+            />
+            <View style={tw`flex-row flex-1 border-b border-grayscale-border ml-16px py-12px`}>
+              <Text style={tw`text-14px text-grayscale-black flex-1`}>Đổi thưởng</Text>
             </View>
           </Pressable>
         </View>
