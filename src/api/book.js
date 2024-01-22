@@ -9,7 +9,7 @@ export const getBookByCategory = (id) => {
 }
 
 export const search = (name) => {
-  return instance.get(`/api/search`, {
+  return instance.post(`/api/search`, {
     name,
   })
 }
