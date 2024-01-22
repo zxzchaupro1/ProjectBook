@@ -20,6 +20,7 @@ export const Home = memo(() => {
         ) : null}
         {isError ? <Text>{error.message}</Text> : null}
         <View key={'idx'}>
+          <Text style={tw`px-12px pt-16px font-bold text-18px`}>Gợi ý cho bạn</Text>
           <GridBook status={status} data={data} error={error} isFetching={isFetching} scrollEnabled={false} />
         </View>
         {/* <Text style={tw`px-12px pt-16px font-bold text-18px`}>Sách mới</Text>
