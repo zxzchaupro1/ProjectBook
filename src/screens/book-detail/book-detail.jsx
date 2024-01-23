@@ -7,15 +7,13 @@ import { useNavigation } from '@react-navigation/native'
 import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { showMessage } from 'react-native-flash-message'
 import { getUrlImage } from '../../utils/image'
-import { useQueryBanners, useQueryBooks } from '../../hooks'
+import { useQueryAdsRandom } from '../../hooks/queries/ads'
 
 export const BookDetail = memo(({ route }) => {
   const navigation = useNavigation()
   const { getItem, setItem } = useAsyncStorage(StorageKeys.favourite)
 
-  const { data = [], isLoading } = useQueryBanners()
-
-  console.log('data', data)
+  const { ads } = useQueryAdsRandom()
 
   const [favourties, setFavourties] = useState([])
   const [isFullScreen, setIsFullScreen] = useState(false)
@@ -157,7 +155,7 @@ export const BookDetail = memo(({ route }) => {
         <Modal animationType="slide" transparent={false}>
           <View style={styles.fullScreenContainer}>
             <Image
-              source={{ uri: getUrlImage(data.length > 0 ? data[0]?.homeImage : '') }}
+              source={{ uri: getUrlImage(ads?.adsImage ?? '') }}
               style={styles.fullScreenImage}
               resizeMode="contain"
             />
