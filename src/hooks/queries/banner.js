@@ -3,7 +3,7 @@ import { getAllBanner } from '../../api/banner'
 
 const getBanners = async () => {
   const res = await getAllBanner()
-  return res?.data?.data ? [res?.data?.data] : []
+  return res?.data?.data ?? []
 }
 
 export function useQueryBanners() {

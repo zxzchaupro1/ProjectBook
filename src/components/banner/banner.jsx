@@ -20,7 +20,7 @@ export const Banner = memo((props) => {
   }
 
   function renderItem({ item, index }) {
-    const { homeImage: uri } = item
+    const { bannerAppImage: uri } = item
     return (
       <TouchableOpacity
         activeOpacity={1}
@@ -52,7 +52,7 @@ export const Banner = memo((props) => {
         onScrollEnd={handleCarouselScrollEnd}
         ref={carouselRef}
       />
-      {/* <SimplePaginationDot currentIndex={currentIndex} length={data.length} /> */}
+      <SimplePaginationDot currentIndex={currentIndex} length={data.length} />
     </View>
   )
 })
