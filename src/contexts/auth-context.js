@@ -21,7 +21,7 @@ export const useAuth = () => useContext(AuthContext)
 export const AuthProvider = ({ children }) => {
   const { getItem, setItem, removeItem } = useAsyncStorage(StorageKeys.user_info)
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   const [user, setUser] = useState()
 
@@ -42,7 +42,6 @@ export const AuthProvider = ({ children }) => {
       const res = await getItem()
       const user_info = JSON.parse(res)
       if (user_info.fullname) {
-        console.log('user_info', user_info)
         setUser(user_info)
         setIsLoggedIn(true)
       }

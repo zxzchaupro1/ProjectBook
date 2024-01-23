@@ -14,7 +14,6 @@ export const RewardPage = React.memo(() => {
 
   const [userInfo, setUserInfo] = useState()
 
-  console.log('23232', userInfo)
   useEffect(() => {
     getInfoUser(user?._id).then((res) => {
       if (res?.data?.data) {

@@ -75,8 +75,6 @@ export const BookView = memo(({ route }) => {
 
   useEffect(() => {
     handleSetBooksReading()
-    console.log(111, user)
-    console.log(222, book)
     addPointApi(user._id, book._id)
   }, [])
 

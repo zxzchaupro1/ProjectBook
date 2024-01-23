@@ -13,7 +13,7 @@ export const BookDetail = memo(({ route }) => {
   const navigation = useNavigation()
   const { getItem, setItem } = useAsyncStorage(StorageKeys.favourite)
 
-  const { ads } = useQueryAdsRandom()
+  const { data: ads } = useQueryAdsRandom()
 
   const [favourties, setFavourties] = useState([])
   const [isFullScreen, setIsFullScreen] = useState(false)

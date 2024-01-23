@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native'
 export const Category = memo(() => {
   const navigation = useNavigation()
 
-  const { data = [], isFetching, isLoading, error, status, isError } = useQueryCategories()
+  const { data, isFetching, isLoading, error, status, isError } = useQueryCategories()
 
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
@@ -23,7 +23,7 @@ export const Category = memo(() => {
           </View>
         ) : null}
         {isError ? <Text>{error.message}</Text> : null}
-        {data.map((item, idx) => (
+        {(data ?? []).map((item, idx) => (
           <View key={idx}>
             <View style={tw`flex flex-row justify-between items-center px-12px`}>
               <Text style={tw`font-bold text-18px`}>{item?.genreName}</Text>
