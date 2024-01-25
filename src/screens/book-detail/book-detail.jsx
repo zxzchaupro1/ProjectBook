@@ -8,10 +8,13 @@ import { useAsyncStorage } from '@react-native-async-storage/async-storage'
 import { showMessage } from 'react-native-flash-message'
 import { getUrlImage } from '../../utils/image'
 import { useQueryAdsRandom } from '../../hooks/queries/ads'
+import { ResizeMode, Video } from 'expo-av'
 
 export const BookDetail = memo(({ route }) => {
   const navigation = useNavigation()
   const { getItem, setItem } = useAsyncStorage(StorageKeys.favourite)
+  const video = React.useRef(null)
+  const [status, setStatus] = React.useState({})
 
   const { data: ads } = useQueryAdsRandom()
 
@@ -31,6 +34,9 @@ export const BookDetail = memo(({ route }) => {
   }
 
   const handleRedirect = () => {
+    if (status.isPlaying) {
+      video.current.pauseAsync()
+    }
     setIsFullScreen(false)
     navigation.navigate(AppRouter.bookView, {
       url: book.content,
@@ -39,19 +45,9 @@ export const BookDetail = memo(({ route }) => {
     })
   }
 
-  const handleOpenAdvertising = useCallback(() => {
+  const handleOpenAdvertising = () => {
     setIsFullScreen(true)
-    // Show the countdown from 5 to 0 before showing the close button
-    const intervalId = setInterval(() => {
-      setCountdown((prevCount) => prevCount - 1)
-    }, 1000)
-
-    // After 5 seconds, hide the countdown and show the close button
-    setTimeout(() => {
-      clearInterval(intervalId)
-      setShowCloseButton(true)
-    }, 5000)
-  }, [])
+  }
 
   const handleSetBookFavourite = async () => {
     try {
@@ -89,6 +85,25 @@ export const BookDetail = memo(({ route }) => {
     readItemFromStorage()
   }, [])
 
+  useEffect(() => {
+    if (status.isPlaying && video.current && isFullScreen) {
+      // Show the countdown from 5 to 0 before showing the close button
+      const intervalId = setInterval(() => {
+        setCountdown((prevCount) => prevCount - 1)
+      }, 1000)
+
+      // After 5 seconds, hide the countdown and show the close button
+      setTimeout(() => {
+        clearInterval(intervalId)
+        setShowCloseButton(true)
+      }, 5000)
+    }
+
+    if (!status.isPlaying && video.current && isFullScreen) {
+      video.current.playAsync()
+    }
+  }, [status.isPlaying, video.current, isFullScreen])
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -100,7 +115,6 @@ export const BookDetail = memo(({ route }) => {
           <View style={styles.containerBackground}>
             <Text style={tw`text-center text-18px font-semibold`}>{book.bookName}</Text>
             <Text style={tw`text-center text-14px text-grayscale-light pb-16px`}>{book.author.authorName}</Text>
-
             <View
               style={tw`mx-16px border-t border-b border-grayscale-border flex-row justify-around items-center py-16px text-center mb-[12px]`}
             >
@@ -154,10 +168,16 @@ export const BookDetail = memo(({ route }) => {
       {isFullScreen && (
         <Modal animationType="slide" transparent={false}>
           <View style={styles.fullScreenContainer}>
-            <Image
-              source={{ uri: getUrlImage(ads?.adsImage ?? '') }}
-              style={styles.fullScreenImage}
-              resizeMode="contain"
+            <Video
+              ref={video}
+              style={styles.video}
+              source={{
+                uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+              }}
+              useNativeControls
+              resizeMode={ResizeMode.CONTAIN}
+              isLooping
+              onPlaybackStatusUpdate={(status) => setStatus(() => status)}
             />
             {showCloseButton ? (
               <TouchableOpacity style={styles.closeButton} onPress={handleRedirect}>
@@ -215,7 +235,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  fullScreenImage: {
+  video: {
     width: '100%',
     height: '100%',
   },
