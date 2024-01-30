@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // get ipv4 from my device and change this line
-export const baseURL = 'http://192.168.85.109:3000'
+export const baseURL = 'http://192.168.85.107:3000'
 
 const instance = axios.create({
   baseURL,

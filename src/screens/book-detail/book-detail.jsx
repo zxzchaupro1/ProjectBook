@@ -172,7 +172,7 @@ export const BookDetail = memo(({ route }) => {
               ref={video}
               style={styles.video}
               source={{
-                uri: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
+                uri: getUrlImage(ads ? ads[0]?.adsImage : ''),
               }}
               useNativeControls
               resizeMode={ResizeMode.CONTAIN}
