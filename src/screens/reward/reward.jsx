@@ -1,23 +1,56 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { tw } from '../../components'
+import { TextInput, tw } from '../../components'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Screen } from 'react-native-screens'
 import { Text } from '@rneui/themed'
 import { numberWithDots } from '../../utils'
 import { Button } from '@rneui/base'
-import { getInfoUser } from '../../api/auth'
+import { getInfoUser, minuspointApi } from '../../api/auth'
 import { useAuth } from '../../contexts'
+import { showMessage } from 'react-native-flash-message'
+
+const convertedPrice = 10000
 
 export const RewardPage = React.memo(() => {
   const { user } = useAuth()
 
-  const [userInfo, setUserInfo] = useState()
+  const [loading, setLoading] = useState(false)
+  const [defaultPoint, setDefaultPoint] = useState(0)
+  const [value, setValue] = useState(0)
+
+  const handleReward = () => {
+    if (!user || !value) return
+    setLoading(true)
+    minuspointApi(user._id, value)
+      .then(() => {
+        setValue(0)
+        showMessage({
+          type: 'success',
+          message: 'Nhận thưởng thành công',
+        })
+      })
+      .catch((err) => {
+        showMessage({
+          type: 'danger',
+          message: 'Nhận thưởng thất bại',
+          description: err?.message,
+        })
+      })
+      .finally(() => {
+        getInfoUser(user?._id).then((res) => {
+          if (res?.data?.data) {
+            setDefaultPoint(res?.data?.data?.pointTotal ?? 0)
+          }
+        })
+        setLoading(false)
+      })
+  }
 
   useEffect(() => {
     getInfoUser(user?._id).then((res) => {
       if (res?.data?.data) {
-        setUserInfo(res?.data?.data)
+        setDefaultPoint(res?.data?.data?.pointTotal ?? 0)
       }
     })
   }, [])
@@ -28,12 +61,12 @@ export const RewardPage = React.memo(() => {
         <View style={styles.box}>
           <View>
             <Text style={styles.point}>
-              {userInfo?.pointTotal ?? 0} <Text style={styles.pointLabel}>ĐIỂM</Text>
+              {defaultPoint ?? 0} <Text style={styles.pointLabel}>ĐIỂM</Text>
             </Text>
           </View>
           <Text style={tw`text-[#fff] px-[18px]`}>=</Text>
           <View style={tw`flex flex-row`}>
-            <Text style={styles.money}>{numberWithDots((userInfo?.pointTotal ?? 0) * 10000)}</Text>
+            <Text style={styles.money}>{numberWithDots((defaultPoint ?? 0) * convertedPrice)}</Text>
             <Text style={tw`text-[#fff]`}>VNĐ</Text>
           </View>
         </View>
@@ -45,9 +78,40 @@ export const RewardPage = React.memo(() => {
           <Text>Mức điểm đổi tối thiểu: 100 điểm trở lên</Text>
           <Text>Thời gian áp dụng: Đến ngày 02/02/2024</Text>
         </View>
-
+        <View style={[styles.box2, tw`mt-[30px]`]}>
+          <View style={tw`flex flex-row justify-center mt-[20px]`}>
+            <Text style={styles.money}>{numberWithDots((value ?? 0) * convertedPrice)}</Text>
+            <Text style={tw`text-[#fff]`}>VNĐ</Text>
+          </View>
+          <View style={tw`w-full text-[#fff] flex flex-row justify-center p-[18px]`}>
+            <Text style={tw`text-[#fff] `}>=</Text>
+          </View>
+          <TextInput
+            value={value}
+            onChangeText={(newValue) => {
+              const number = Number(newValue)
+              if (number > defaultPoint) {
+                setValue(defaultPoint)
+              } else {
+                setValue(number)
+              }
+            }}
+            inputContainerStyle={{
+              height: 42,
+              borderRadius: 10,
+              backgroundColor: '#fff',
+              borderColor: '#c4c4c4',
+              borderWidth: 1,
+              paddingLeft: 8,
+            }}
+            maxLength={255}
+            placeholder="Điểm cần đổi"
+            clearButtonMode="while-editing"
+            borderVisibleIfValue={false}
+          />
+        </View>
         <View style={tw`w-full px-60px mt-36px`}>
-          <Button title="Rút tiền" buttonStyle={tw`bg-[#191970] rounded`} />
+          <Button title="Rút tiền" buttonStyle={tw`bg-[#191970] rounded`} loading={loading} onPress={handleReward} />
         </View>
       </SafeAreaView>
     </Screen>
@@ -89,5 +153,10 @@ const styles = StyleSheet.create({
   },
   moneyLabel: {
     color: 'white',
+  },
+  box2: {
+    borderRadius: 8,
+    backgroundColor: '#191970',
+    width: '100%',
   },
 })
