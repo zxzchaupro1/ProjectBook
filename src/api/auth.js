@@ -19,3 +19,10 @@ export const getInfoUser = (userId) => {
     userId,
   })
 }
+
+export const minuspointApi = (userId, minusPoint) => {
+  return instance.post(`/api/minuspoint`, {
+    userId,
+    minusPoint,
+  })
+}
